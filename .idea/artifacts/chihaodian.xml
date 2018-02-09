@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="chihaodian">
+    <output-path>$USER_HOME$/eclipse/apache-tomcat-7.0.68/webapps</output-path>
+    <root id="archive" name="chihaodian.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="chihaodian" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="chihaodian/web/Web" />
+    </root>
+  </artifact>
+</component>

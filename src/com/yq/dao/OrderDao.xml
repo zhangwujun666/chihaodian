@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.OrderDao">
+	<insert id="insert" useGeneratedKeys="true" keyProperty="order_id"
+		parameterType="com.yq.entity.Order">
+		insert
+		tb_order(order_id,goods_id,goods_name,goods_img,goods_spe,goods_price,goods_num,goods_total,
+		goods_total_num,addr_name,receive,cps_id,cps_name,cps_price,oppen_id,add_time,status,note,card_id,card_status,card_code)
+		values
+		(
+		#{order_id},#{goods_id},#{goods_name},#{goods_img},#{goods_spe},#{goods_price},#{goods_num},#{goods_total},
+		#{goods_total_num},#{addr_name},#{receive},#{cps_id},#{cps_name},#{cps_price},#{oppen_id},#{add_time},#{status},#{note},#{card_id},#{card_status},#{card_code}
+		)
+	</insert>
+
+	<update id="upstatus" parameterType="java.util.Map">
+		update tb_order set
+		
+		status=#{status} 
+		<if test="express_dm !=null"> ,express_dm=#{express_dm}</if>
+
+<if test="express_dm !=null"> ,express_name=#{express_name}</if>
+
+<if test="express_dm !=null"> ,express_hm=#{express_hm}</if>
+		where order_id=#{order_id}
+	</update>
+	
+	<update id="upprice" parameterType="java.util.Map">
+		update tb_order set
+		goods_total=#{goods_total},order_id=#{reorder_id} where order_id=#{order_id}
+	</update>
+	<delete id="delete" parameterType="java.util.Map">
+		delete from tb_order where
+		order_id=#{order_id}
+	</delete>
+
+	<select id="list" resultType="com.yq.entity.Order" flushCache="true" useCache="false">
+		select
+			t1.order_id,
+			t1.goods_id,
+			t1.goods_name,
+			t1.goods_img,
+			t1.goods_spe,
+			t1.goods_price,
+			t1.goods_num,
+			t1.goods_total,
+			t1.goods_total_num,
+			t1.addr_name,
+			t1.receive,
+			t1.cps_id,
+			t1.cps_name,
+			t1.cps_price,
+			t1.oppen_id,
+			t1.add_time,
+			t1.status,
+			t1.note,
+			t1.phone,
+			t1.express_dm,
+			t1.express_name,
+			t1.express_hm,
+			ifnull(t1.card_id, 0) as card_id,
+			card_status,
+			ifnull(t1.card_code,0) as card_code
+		from tb_order t1 left join tb_user t2 on
+		t1.oppen_id=t2.oppen_id where 1=1
+		<!-- 按日期查询订单 -->
+		<if test="start_time!=null and start_time!='' and end_time!=null and end_time!=''">
+			and t1.add_time between #{start_time} and #{end_time}
+		</if>
+		<!-- 按产品分类查询订单 -->
+		<if test="ctg_name!=null and ctg_name!=''">
+			and t1.goods_id in (select goods_id from tb_goods where ctg_id in 
+			
+			(select ctg_id from tb_category where ctg_name like CONCAT('%',#{ctg_name},'%')))
+			
+		</if>
+		<!-- 按产品名字查询订单 -->
+		<if test="goods_name!=null and goods_name!=''">
+			and t1.goods_name like CONCAT('%',#{goods_name},'%') 
+		</if>
+		<!-- 按客户名字查询订单（根据收货地址） -->
+		<if test="addr_name!=null and addr_name!=''">
+			and t1.addr_name like CONCAT('%',#{addr_name},'%') 
+		</if>
+		
+		
+		<if test="oppen_id!=null and oppen_id!=''">
+			and t1.oppen_id=#{oppen_id}
+		</if>
+		
+		<if test="status!=null and status!=-2">
+			and t1.status=#{status}
+		</if>
+		order by t1.add_time desc
+		<if test="pageSize!=null and pageSize!=0">
+			limit #{currentNum},#{pageSize}
+		</if>
+	</select>
+
+
+	<select id="listById" resultType="com.yq.entity.Order">
+		select * from tb_order where
+		order_id=#{order_id}
+	</select>
+
+	<select id="listJson" resultType="com.yq.entity.Order">
+		select addr_name,goods_name,goods_num,goods_price,note,add_time from tb_order where note is not null  and status=3
+		<if test="pageSize!=null and pageSize!=0">
+			limit #{currentNum},#{pageSize}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select  count(1) from tb_order t1 left join tb_user t2 on
+		t1.oppen_id=t2.oppen_id where 1=1
+		<!-- 按日期查询订单 -->
+		<if test="start_time!=null and start_time!='' and end_time!=null and end_time!=''">
+			and t1.add_time between #{start_time} and #{end_time}
+		</if>
+		<!-- 按产品分类查询订单 -->
+		<if test="ctg_name!=null and ctg_name!=''">
+			and t1.goods_id in (select goods_id from tb_goods where ctg_id in 
+			
+			(select ctg_id from tb_category where ctg_name like CONCAT('%',#{ctg_name},'%')))
+			
+		</if>
+		<!-- 按产品名字查询订单 -->
+		<if test="goods_name!=null and goods_name!=''">
+			and t1.goods_name like CONCAT('%',#{goods_name},'%') 
+		</if>
+		<!-- 按客户名字查询订单（根据收货地址） -->
+		<if test="addr_name!=null and addr_name!=''">
+			and t1.addr_name like CONCAT('%',#{addr_name},'%') 
+		</if>
+		
+		
+		<if test="oppen_id!=null and oppen_id!=''">
+			and t1.oppen_id=#{oppen_id}
+		</if>
+		
+		<if test="status!=null and status!=-2">
+			and t1.status=#{status}
+		</if>
+	</select>
+
+	<select id="listJsonCount" resultType="int">
+		select count(1) from tb_order  where note is not null  and status=3
+	</select>
+
+	<update id="cardStatusUpdate" parameterType="java.util.Map">
+		update tb_order
+		set card_status = 1, card_code = #{card_code}
+		where order_id = #{order_id}
+	</update>
+
+	<select id="findOrderByCode" parameterType="String" resultType="java.util.Map">
+		select order_id, goods_name,card_id
+		from tb_order
+		where card_code = #{card_code}
+	</select>
+
+	<update id="cardAddressUpdate" parameterType="java.util.Map">
+		update tb_order
+		set addr_name = #{order_addr}, note = '已使用微信卡券'
+		where order_id = #{orderId}
+	</update>
+</mapper>
