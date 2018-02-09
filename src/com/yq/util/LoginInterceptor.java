@@ -71,7 +71,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		}
 		log.info("最终 flag=="+flag);
 
-
+//返回值确定
 //		flag=true ;
 		return flag;
 	}
