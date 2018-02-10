@@ -360,7 +360,7 @@ $(function(){
 
 		var card_status = '0';
 		$.ajax({
-			url:'orderInsert.html',
+			url:'cardOrderInsert.html',
 			type:'post',
 			data:'goods_id='+goods_id
 			+'&goods_name='+goods_name
@@ -503,7 +503,7 @@ $(function(){
 
 		var addr_name=addr_user+' '+addr_tel+' '+province+' '+city+' '+ area+' '+addr_name;
     	$.ajax({
-			url:'orderInsert.html',
+			url:'cardOrderInsert.html',
 			type:'post',
 			data:'goods_id='+goods_id
 			+'&goods_name='+goods_name

@@ -79,83 +79,83 @@ public class OrderCtrl extends StringUtil {
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private Logger log = Logger.getLogger(this.getClass());
-//	WechatPushMassage wechatPushMassage = new WechatPushMassage();
+//	WechatPushMassage wechatPushMassageushMassage = new WechatPushMassage();
 
-//	@ResponseBody
-//	@RequestMapping(value = "/page/orderInsert.html")
-//	public String insert(String goods_id, String goods_name, String card_id, String goods_img, String goods_spe, String goods_price,
-//			String goods_num, Float goods_total, Integer goods_total_num, Integer cps_id, String cps_name,
-//			@RequestParam(defaultValue = "0") Float cps_price, String addr_name, String receive, String oppen_id,
-//			Integer status, String note, String card_status, HttpSession session) throws UnsupportedEncodingException {
-//		String add_time = sdf.format(new Date());
-//		oppen_id = getOppen_id(session);
-//		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-//		Order order = new Order();
-//		String order_id = sd.format(new Date());
-//		if(StringUtils.isNotEmpty(goods_name)){
-//			goods_name = java.net.URLDecoder.decode(goods_name,"utf-8") ;
-//		}
-//		if(StringUtils.isNotEmpty(card_id)){
-//			card_id = java.net.URLDecoder.decode(card_id,"utf-8") ;
-//		}
-//		if(StringUtils.isNotEmpty(goods_spe)){
-//			goods_spe = java.net.URLDecoder.decode(goods_spe,"utf-8") ;
-//		}
-//		if(StringUtils.isNotEmpty(cps_name)){
-//			cps_name = java.net.URLDecoder.decode(cps_name,"utf-8") ;
-//		}
-//		if(StringUtils.isNotEmpty(addr_name)){
-//			addr_name = java.net.URLDecoder.decode(addr_name,"utf-8") ;
-//		}
-//		if(StringUtils.isNotEmpty(receive)){
-//			receive = java.net.URLDecoder.decode(receive,"utf-8") ;
-//		}
-//		if(StringUtils.isNotEmpty(note)){
-//			note = java.net.URLDecoder.decode(note,"utf-8") ;
-//		}
-//		order.setOrder_id(order_id);
-//		order.setGoods_id(goods_id);
-//		order.setGoods_name(goods_name);
-//		order.setCard_id(card_id);
-//		order.setGoods_img(goods_img);
-//		order.setGoods_spe(goods_spe);
-//		order.setGoods_price(goods_price);
-//		order.setGoods_num(goods_num);
-//		order.setGoods_total(goods_total);
-//		order.setGoods_total_num(goods_total_num);
-//		order.setCps_id(cps_id);
-//		order.setCps_name(cps_name);
-//		order.setAddr_name(addr_name);
-//		order.setCps_price(cps_price);
-//		order.setReceive(receive);
-//		order.setOppen_id(oppen_id);
-//		order.setAdd_time(add_time);
-//		order.setStatus(0);
-//		order.setNote(note);
-//		order.setCard_status("0");
-//		if (orderService.insert(order) == 1) {
-//			if(goods_id.contains(",-=")){
-//				String[] gids = goods_id.split(",-=");
-//				for (int i = 0; i < gids.length; i++) {
-//					map.put("goods_id", gids[i]);
-//					cartService.delete(map);
-//				}
-//			}else {
-//				map.put("goods_id", goods_id);
-//				session.setAttribute("cart_num", 0);
-//				cartService.delete(map);
-//			}
-//			if (cps_id != null) {
-//				map.put("status", 0);
-//				map.put("cps_id", cps_id);
-//				couponsService.upstatus(map);
-//			}
-//			return order_id;
-//		} else {
-//			return "0";
-//		}
-//
-//	}
+	@ResponseBody
+	@RequestMapping(value = "/page/cardOrderInsert.html")
+	public String cardInsert(String goods_id, String goods_name, String card_id, String goods_img, String goods_spe, String goods_price,
+			String goods_num, Float goods_total, Integer goods_total_num, Integer cps_id, String cps_name,
+			@RequestParam(defaultValue = "0") Float cps_price, String addr_name, String receive, String oppen_id,
+			Integer status, String note, String card_status, HttpSession session) throws UnsupportedEncodingException {
+		String add_time = sdf.format(new Date());
+		oppen_id = getOppen_id(session);
+		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		Order order = new Order();
+		String order_id = sd.format(new Date());
+		if(StringUtils.isNotEmpty(goods_name)){
+			goods_name = java.net.URLDecoder.decode(goods_name,"utf-8") ;
+		}
+		if(StringUtils.isNotEmpty(card_id)){
+			card_id = java.net.URLDecoder.decode(card_id,"utf-8") ;
+		}
+		if(StringUtils.isNotEmpty(goods_spe)){
+			goods_spe = java.net.URLDecoder.decode(goods_spe,"utf-8") ;
+		}
+		if(StringUtils.isNotEmpty(cps_name)){
+			cps_name = java.net.URLDecoder.decode(cps_name,"utf-8") ;
+		}
+		if(StringUtils.isNotEmpty(addr_name)){
+			addr_name = java.net.URLDecoder.decode(addr_name,"utf-8") ;
+		}
+		if(StringUtils.isNotEmpty(receive)){
+			receive = java.net.URLDecoder.decode(receive,"utf-8") ;
+		}
+		if(StringUtils.isNotEmpty(note)){
+			note = java.net.URLDecoder.decode(note,"utf-8") ;
+		}
+		order.setOrder_id(order_id);
+		order.setGoods_id(goods_id);
+		order.setGoods_name(goods_name);
+		order.setCard_id(card_id);
+		order.setGoods_img(goods_img);
+		order.setGoods_spe(goods_spe);
+		order.setGoods_price(goods_price);
+		order.setGoods_num(goods_num);
+		order.setGoods_total(goods_total);
+		order.setGoods_total_num(goods_total_num);
+		order.setCps_id(cps_id);
+		order.setCps_name(cps_name);
+		order.setAddr_name(addr_name);
+		order.setCps_price(cps_price);
+		order.setReceive(receive);
+		order.setOppen_id(oppen_id);
+		order.setAdd_time(add_time);
+		order.setStatus(0);
+		order.setNote(note);
+		order.setCard_status("0");
+		if (orderService.insert(order) == 1) {
+			if(goods_id.contains(",-=")){
+				String[] gids = goods_id.split(",-=");
+				for (int i = 0; i < gids.length; i++) {
+					map.put("goods_id", gids[i]);
+					cartService.delete(map);
+				}
+			}else {
+				map.put("goods_id", goods_id);
+				session.setAttribute("cart_num", 0);
+				cartService.delete(map);
+			}
+			if (cps_id != null) {
+				map.put("status", 0);
+				map.put("cps_id", cps_id);
+				couponsService.upstatus(map);
+			}
+			return order_id;
+		} else {
+			return "0";
+		}
+
+	}
 		@ResponseBody
 		@RequestMapping(value = "/page/orderInsert.html")
 		public String insert(String goods_id, String goods_name, String goods_img, String goods_spe, String goods_price,
