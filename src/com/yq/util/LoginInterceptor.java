@@ -38,42 +38,41 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		boolean flag = false;
+//=====================================================================
+		flag = session.getAttribute("oppen_id") != null ? true : false;
+		String url = (request.getRequestURL() + "?" + request.getQueryString()).toString();
+		System.out.println(">>>: " + url);
+		for (String s : IGNORE_URI) {
+			if (url.contains(s)) {
+				flag = true;
+				break;
+			}
+		}
+		log.info("url>>>: " + url);
+		if (!flag) {
+			AbstractApplicationContext ctx   = new ClassPathXmlApplicationContext(new String []{"classpath:applicationContext.xml"});
+			WxSettingService wxSettingService =(WxSettingService)ctx.getBean("wxSettingService") ;
+			WxSetting wxSetting  =  wxSettingService.selectByPrimaryKey(1);
 
-//		flag = session.getAttribute("oppen_id") != null ? true : false;
-//		String url = (request.getRequestURL() + "?" + request.getQueryString()).toString();
-//		System.out.println(">>>: " + url);
-//		for (String s : IGNORE_URI) {
-//			if (url.contains(s)) {
-//				flag = true;
-//				break;
-//			}
-//		}
-//		log.info("url>>>: " + url);
-//		if (!flag) {
-//			AbstractApplicationContext ctx   = new ClassPathXmlApplicationContext(new String []{"classpath:applicationContext.xml"});
-//			WxSettingService wxSettingService =(WxSettingService)ctx.getBean("wxSettingService") ;
-//			WxSetting wxSetting  =  wxSettingService.selectByPrimaryKey(1);
-//
-//			if (request.getHeader("x-requested-with") != null
-//					&& request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) { // 如果是ajax请求响应头会有x-requested-with
-//				log.info("ajax -- 进入--->>>");
-//				map.put("rs_code",1005);
-//				response.getWriter().write(gson.toJson(map));
-//			}
-//				else {
-//				log.info("不是ajax -- 进入--->>>");
-////				System.out.println("wxSetting.getAppid()=="+wxSetting.getAppid());
-//				response.sendRedirect(
-//						"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert.html?url="
-//								+ url
-//								+ "&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect");
-//			}
-//		}
-//		log.info("最终 flag=="+flag);
+			if (request.getHeader("x-requested-with") != null
+					&& request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest")) { // 如果是ajax请求响应头会有x-requested-with
+				log.info("ajax -- 进入--->>>");
+				map.put("rs_code",1005);
+				response.getWriter().write(gson.toJson(map));
+			}
+				else {
+				log.info("不是ajax -- 进入--->>>");
+//				System.out.println("wxSetting.getAppid()=="+wxSetting.getAppid());
+				response.sendRedirect(
+						"https://open.weixin.qq.com/connect/oauth2/authorize?appid="+wxSetting.getAppid()+"&redirect_uri="+wxSetting.getLink()+"/page/userInsert.html?url="
+								+ url
+								+ "&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect");
+			}
+		}
+		log.info("最终 flag=="+flag);
 
 //返回值确定
 		flag=true ;
-		//
 		return flag;
 	}
 
