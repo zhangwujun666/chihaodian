@@ -235,12 +235,12 @@
 .sczc-ty a{ font-size:12px; color:#333; text-decoration:underline;}
 
 /*************我想要手机商城全部商品*********************/
-.quanbu-top{ padding:9px 5px; background:#ffffff;}
+.quanbu-top{ padding:9px 5px;}
 .quanbu-top .qb-tleft{ display:block; }
 .qb-tleft img{width:90px;}
 .quanbu-top .qb-tright{}
 .qb-tright a{ display:inline-block;}
-.qb-tright img{ display:inline-block; height:30px; position:absolute; right:2%; top:6px;}
+.qb-tright img{ display:inline-block; height:30px; position:absolute; right:2%; top:106px;}
 
 .quanbu-title1{ background:#fff; height:30px;border-bottom:1px solid #EDEDED;}
 .quanbu-title1 li{ float:left; width:20%; height:30px; line-height:30px; text-align:center;}
@@ -399,7 +399,7 @@
 .sy-ol li.on{ background:#E74D5D;}
 
 .sy-info1{ width:99%; background:#fff; margin-top:5px;}
-.sy-info1 .info-img { width:100%; height:90px; margin: 0 auto; background: #fff; overflow: hidden;}
+.sy-info1 .info-img { width:100%; height:90px; margin: 0 auto; overflow: hidden;}
 .info-img li{ width: 20%; height: 40px; margin-top: 15px; float: left;}
 .info-img li .img-1 { display: block;  width: 40px; height: 40px; border-radius: 50%; margin: 0 auto;}
 .info-img .img-txt { display: block; text-align:center;font-size:11px ;height: 26px; line-height:33px; overflow:hidden;}

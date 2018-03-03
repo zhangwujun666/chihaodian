@@ -20,29 +20,27 @@
 
 <body id="wrap">
 	
-    <div class="quanbu-top">
-    <input id="goods_name" name="keyword" class="hd_keyword"
-				placeholder="       请输入商品名称" style="width: 95%;font-size: 14px" onclick="window.location.href='secList.html'">
-    	<a href="areaList.html" class="qb-tleft f-l">
-    	<!-- <img src="images/sjsc-14.png" style="width: 19px;height: 25px;"> --></a>
-    	<%-- <c:forEach items="${userList}" var="userList"><a href="areaList.html"><font color="#ABD13E" size="3px">&nbsp;&nbsp;${userList.area_name}</font></a></c:forEach> --%>
-        
-        <div class="qb-tright f-r">
-        	<a href="secList.html"> <img src="images/sjsc-13_button.png"> </a>
-        </div>
-        <div style="clear:both;"></div>
-    </div>
-    <div class="banner1" id="ban1">
-        <ul class="sy-ul">
-        <c:forEach items="${banList}" var="list">
-            <li><a href="${list.url}"><img src="${list.ban_img }"></a></li>
-         </c:forEach> 
-        </ul>
-        <ol class="sy-ol">
-        </ol>
-    </div>
+
+
     
-<div class="sy-info1" style="border-bottom:4px solid #E6E6E6;">
+    <div class="sy-info1" style="border-bottom:4px solid #E6E6E6; background-image: url(images/head.png); background-size: 100%; background-repeat: no-repeat; height: 230px;">
+        <div style="width: 100%; text-align: center;">
+            <img src="images/head_logo.png" style="width: 160px; margin: 0 auto; ">
+        </div>
+
+        <div class="quanbu-top">
+            <input id="goods_name" name="keyword" class="hd_keyword"
+                   placeholder="       请输入商品名称" style="width: 95%;font-size: 14px" onclick="window.location.href='secList.html'">
+            <a href="areaList.html" class="qb-tleft f-l">
+                <!-- <img src="images/sjsc-14.png" style="width: 19px;height: 25px;"> --></a>
+            <%-- <c:forEach items="${userList}" var="userList"><a href="areaList.html"><font color="#ABD13E" size="3px">&nbsp;&nbsp;${userList.area_name}</font></a></c:forEach> --%>
+
+            <div class="qb-tright f-r">
+                <a href="secList.html"> <img src="images/sjsc-13_button.png"> </a>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+
         <ul class="info-img">
             <li>
             	<a href="secGoodsList.html?is_recommend=1" class="img-1" ><img  src="images/b1.png" style="width:42px;height: 42px"> </a>
@@ -50,7 +48,7 @@
             </li>
             <li>
             	<a href="category.html?ctg_id=23" class="img-1" > <img  src="images/b2.png" style="width:42px;height: 42px"></a>
-                <a href="category.html?ctg_id=23" class="img-txt">活力鲜果</a> 
+                <a href="category.html?ctg_id=23" class="img-txt">活力鲜果</a>
             </li>
             <li>
             	<a href="category.html?ctg_id=21" class="img-1" style=""><img  src="images/b3.png" style="width:42px;height: 42px"></a>
@@ -62,11 +60,22 @@
             </li>
              <li>
             	<a href="category.html?ctg_id=22" class="img-1" ><img  src="images/b5.png" style="width:42px;height: 42px"></a>
-                <a href="category.html?ctg_id=22" class="img-txt">肉禽蛋类</a> 
+                <a href="category.html?ctg_id=22" class="img-txt">肉禽蛋类</a>
             </li>
         </ul>
         
     </div>
+
+    <div class="banner1" id="ban1">
+        <ul class="sy-ul">
+            <c:forEach items="${banList}" var="list">
+                <li><a href="${list.url}"><img src="${list.ban_img }"></a></li>
+            </c:forEach>
+        </ul>
+        <ol class="sy-ol">
+        </ol>
+    </div>
+
     <div class="ssjg" >
         <ul class="ssjg-ul2" style="padding-top:0;">
         <c:forEach items="${advList}" var="advList">
