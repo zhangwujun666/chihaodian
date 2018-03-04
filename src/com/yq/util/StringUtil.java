@@ -8,9 +8,9 @@ public class StringUtil {
 
 
 	public String getOppen_id(HttpSession session) {
-		return (String) session.getAttribute("oppen_id");
+//		return (String) session.getAttribute("oppen_id");
 //		return "olR6d0hVEJSqvvjOBqrPMMOKgkmo";
-//		return "olR6d0uD6WYGpX6mEbW_nF_bn69s";
+		return "olR6d0uD6WYGpX6mEbW_nF_bn69s";
 	}
 	public void setOppen_id(String oppen_id, HttpSession session){
 		

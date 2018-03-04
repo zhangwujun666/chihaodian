@@ -18,7 +18,7 @@
 </head>
 <body>
 <section class="content">
-    <header class="user-info" style="background-color: #ABD13E;">
+    <header class="user-info" style="background-color: #FF0000;">
         <section class="user-basic" style="height: 120px">
         <c:forEach items="${user}" var="list">
         <img src="${list.head_img}">
@@ -52,8 +52,13 @@
           <div style="background-color: #F3F3F3;height: 10px"></div>
          <a class="slide-link" href="cpsList.html">
             <img src="images/wd-012-02.png">
-            我的优惠券        </a> 
-           
+            我的优惠券        </a>
+    <div style="background-color: #F3F3F3;height: 10px"></div>
+        <section class="f-section">
+            <a class="slide-link" href="store.html">
+                <img src="images/wd-012-02.png">
+                我的佣金 </a>
+        </section>
     </section>
    
     <div style="height:80px"></div>
