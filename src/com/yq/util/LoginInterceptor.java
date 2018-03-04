@@ -38,7 +38,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		boolean flag = false;
-//=====================================================================
+//============================登录拦截器=========================================
 		flag = session.getAttribute("oppen_id") != null ? true : false;
 		String url = (request.getRequestURL() + "?" + request.getQueryString()).toString();
 		System.out.println(">>>: " + url);
