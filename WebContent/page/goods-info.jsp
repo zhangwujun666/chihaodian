@@ -33,7 +33,8 @@
     <input type="hidden" value="${list.goods_img}" id="goods_img">
     <input type="hidden" value="${list.goods_spe}" id="goods_spe">
     <input type="hidden" value="${list.goods_price}" id="goods_price">
-    <div class="banner1" style="z-index：9">
+    <input type="hidden" value="${list.card_id}" id="card_id">
+    <div class="banner1" style="z-index: 9;">
         <ul class="sy-ul">
             <li><a href="#"><img src="${list.goods_img}"></a></li>
         </ul>
@@ -80,11 +81,12 @@
 		var goods_img = $('#goods_img').val();
 		var goods_spe = $('#goods_spe').val();
 		var goods_price = $('#goods_price').val();
+        var card_id = $('#card_id').val();
 		
 		$.ajax({
 			url:'cartInsert.html',
 			type:'post',
-			data:'goods_id='+goods_id+'&goods_name='+encodeURI(goods_name)+'&goods_img='+goods_img+'&goods_price='+goods_price+'&goods_num=1'+'&goods_spe='+encodeURI(goods_spe),
+			data:'goods_id='+goods_id+'&goods_name='+encodeURI(goods_name)+'&goods_img='+goods_img+'&goods_price='+goods_price+'&goods_num=1'+'&goods_spe='+encodeURI(goods_spe)+'&card_id='+card_id,
 			success:function(rs){
 				var data = eval('('+rs+')');
 				if(data.rs_code==1){

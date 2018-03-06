@@ -65,6 +65,7 @@ document.body.addEventListener('touchmove',function(e){
                         <div class="right-con-p">
                       
                             <p class="p1 p-txt" onclick="window.location.href='goodsListById.html?goods_id=${goodsList.goods_id}'"><a>${goodsList.goods_name}</a></p>
+                            <input type="hidden" value="${goodsList.card_id}" id="card_id">
                             <p class="p2 p-txt" onclick="window.location.href='goodsListById.html?goods_id=${goodsList.goods_id}'"><span class="price-1">${goodsList.goods_spe}</span></p>
                             <p class="p3 p-txt" style="float: left;" onclick="window.location.href='goodsListById.html?goods_id=${goodsList.goods_id}'"><span class="price-1" style="font-size: 18px">&yen;${goodsList.goods_price}</span></p>
                           <p style="float: right;margin-top: 10px"> <a href="javascript:;" onclick="add('${goodsList.goods_id}','${goodsList.goods_name}','${goodsList.goods_img}','${goodsList.goods_spe}','${goodsList.goods_price}')"><img src="images/sjsc-09.gif" style="width: 25px;height: 25px"></a>
@@ -91,7 +92,7 @@ document.body.addEventListener('touchmove',function(e){
 		$.ajax({
 			url:'cartInsert.html',
 			type:'post',
-			data:'goods_id='+goods_id+'&goods_name='+goods_name+'&goods_img='+goods_img+'&goods_price='+goods_price+'&goods_num=1'+'&goods_spe='+goods_spe,
+			data:'goods_id='+goods_id+'&goods_name='+goods_name+'&goods_img='+goods_img+'&goods_price='+goods_price+'&goods_num=1'+'&goods_spe='+goods_spe+'&card_id='+card_id,
 			success:function(rs){
 				var data = eval('('+rs+')');
 				if(data.rs_code==1){
