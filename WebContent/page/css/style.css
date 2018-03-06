@@ -9,7 +9,7 @@ h1,h2,h3,h4,h5,h6{font-size:100%;}
 em{font-style:normal;}
 input,button,select,textarea{outline:none;}
 /*textarea { resize:none; }*/
-a{color: white; text-decoration:none;}
+a{color: black; text-decoration:none;}
 a:hover{text-decoration:none;}
 a:focus{outline:none;-moz-outline:none;}/*解决去除 a 链接点击后有一个虚线的边框出现*/
 

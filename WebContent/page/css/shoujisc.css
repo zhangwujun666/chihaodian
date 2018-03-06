@@ -398,11 +398,11 @@
 .sy-ol li{ /* width:6px; height:6px; */ border-radius:50%; background:#BDBDBD; display:inline-block; font-size:0; margin-right:3px;}
 .sy-ol li.on{ background:#E74D5D;}
 
-.sy-info1{ width:99%; background:#fff; margin-top:5px;}
+.sy-info1{ width:100%; background:#fff; margin-top:0px;}
 .sy-info1 .info-img { width:100%; height:90px; margin: 0 auto; overflow: hidden;}
 .info-img li{ width: 20%; height: 40px; margin-top: 15px; float: left;}
 .info-img li .img-1 { display: block;  width: 40px; height: 40px; border-radius: 50%; margin: 0 auto;}
-.info-img .img-txt { display: block; text-align:center;font-size:11px ;height: 26px; line-height:33px; overflow:hidden;}
+.info-img .img-txt { display: block; text-align:center;font-size:11px ;height: 26px; line-height:33px; overflow:hidden; color:white;}
 
 .sy-ft{ width:100%;margin-bottom:80px;}
 .sy-ftif1{ height:30px; background:#fff; margin-bottom:5px;}
