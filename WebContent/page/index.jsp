@@ -23,7 +23,7 @@
 
 
     
-    <div class="sy-info1" style="border-bottom:4px solid #E6E6E6; background-image: url(images/head.png); background-size: 100%; background-repeat: no-repeat; height: 230px;">
+    <div class="sy-info1" style="background-image: url(images/head.png); background-size: 100%; background-repeat: no-repeat; height: 230px;">
         <div style="width: 100%; text-align: center;">
             <img src="images/head_logo.png" style="width: 160px; margin: 0 auto; ">
         </div>

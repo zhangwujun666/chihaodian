@@ -27,6 +27,17 @@
         </section>
     </header>
     <div style="background-color: #F3F3F3;height: 10px"></div>
+
+    <section class="f-section" style="line-height: 30px">
+        <c:forEach items="${user}" var="list">
+            <div class="slide-link" style="background: white">
+             <img src="images/wd-012-1.png">
+                我的积分 : ${list.realname}
+            </div>
+        </c:forEach>
+    </section>
+    <div style="background-color: #F3F3F3;height: 10px"></div>
+
     <section class="f-section" style="line-height: 30px">
         
        <a class="slide-link" href="orderList.html">
@@ -57,7 +68,7 @@
         <section class="f-section">
             <a class="slide-link" href="store.html">
                 <img src="images/wd-012-02.png">
-                我的佣金 </a>
+                分享店铺 </a>
         </section>
     </section>
    
