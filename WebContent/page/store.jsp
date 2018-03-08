@@ -22,104 +22,71 @@
 <script type="text/javascript" src="js/jquery.qrcode.js" ></script>
 <script type="text/javascript" src="js/qrcode.js" ></script>
 <script type="text/javascript" src="js/utf.js" ></script>
+<script type="text/javascript" src="js/html2canvas.min.js"></script>
     <div class="sjsc-title2">
     	<h3 class="sjsc-t2l">我的店铺</h3>
         <a href="javascript:history.back();" class="sjsc-t2r"><img src="images/back.png" alt="" style="width:20px;height: 20px;padding-top: 11px;padding-left: 5px"/></a>
     </div>
 
     <ul class="gwc-ul1"  style=" text-align:center;">
-        <li onclick="">
-            <p class="gwc-p1">店铺掌柜</p>
-            <c:forEach items="${user}" var="list">
-                <%--<p>${list.oppen_id}</p>--%>
-                <div style="text-align:center;">
-                    <%--<img id="icon" src="${list.head_img}" style="width: 80px; vertical-align:middle; display: inline-flex;">--%>
-                </div>
-                <div class="user-name">${list.realname}</div>
-                <input id="image" type="hidden" value="${list.head_img}">
-                <input id="open_id" type="hidden" value="${list.oppen_id}">
-
-            </c:forEach>
-            <c:forEach items="${img}" var="list">
-                <div>
-                    <span>头像</span>
-                    <img id="icon" src="${img.iconPath}">
-                </div>
-            </c:forEach>
-        </li>
         <%--<li>--%>
-            <%--<p>Render in table</p>--%>
-            <%--<div id="qrcodeTable"></div>--%>
+            <%--<p class="gwc-p1">店铺掌柜</p>--%>
+            <%--<c:forEach items="${user}" var="list">--%>
+                <%--&lt;%&ndash;<p>${list.oppen_id}</p>&ndash;%&gt;--%>
+                <%--<div style="text-align:center;">--%>
+                    <%--<img id="icon" src="${list.head_img}" style="width: 80px; vertical-align:middle; display: inline-flex;">--%>
+                <%--</div>--%>
+                <%--<div class="user-name">${list.realname}</div>--%>
+                <%--<input id="image" type="hidden" value="${list.head_img}">--%>
+                <%--<input id="open_id" type="hidden" value="${list.oppen_id}">--%>
+
+            <%--</c:forEach>--%>
+
+                <%--<div>--%>
+                    <%--<span>头像</span>--%>
+                    <%--<img id="icon" src="${img.iconPath}">--%>
+                <%--</div>--%>
+                <%--<div>--%>
+                    <%--<p>我的店铺二维码</p>--%>
+                <%--</div>--%>
         <%--</li>--%>
+        <c:forEach items="${img}" var="list">
+            <div>
+                <img id="code" src="${img.iconPath}" style="vertical-align:middle; display: none;">
+                <img id="shareImg" src="images/shareImg.png" style="display: none">
+            </div>
+        </c:forEach>
+        <%--<li>--%>
+            <%--<button id="btn-merge" onclick="date()">合成</button>--%>
+        <%--</li>--%>
+        <li style="background-color: #ff3c00">
+            <div id="qrCode" style="vertical-align:middle; display: inline-flex;"></div>
+        </li>
         <li>
-            <p>保存二维码图片并分享我的店铺</p>
-            <div hidden="hidden" id="qrcodeCanvas"></div>
-            <div id="scanPayImg" style="vertical-align:middle; display: inline-flex;"></div>
+            <p style="font-size: 20px">长按图片分享店铺</p>
         </li>
 
-        <li>
-            <button id="btn-merge" onclick="date()">合成</button>
-        </li>
-        <li>
-            <img src="" style="width: 200px; vertical-align:middle; display: inline-flex;">
-            <%--<img src="images/gray.jpg">--%>
-            <%--<img src="images/11.png">--%>
-
-        </li>
-        <li>
-            <div id="qrCode"></div>
-        </li>
     </ul>
 
 
 
     <script type="text/javascript">
-        var image = $('#image').val();
-        var openId = $('#open_id').val();
-        var shareUrl = "http://www.mytpin.com/page/storeShare.html?open_id="+openId;
-        jQuery('#qrcodeTable').qrcode({
-            render    : "table",                <!--二维码生成方式 -->
-            text    : shareUrl , <!-- 二维码内容  -->
-            width : "200",               //二维码的宽度
-            height : "200",
-        });
-        jQuery('#qrcodeCanvas').qrcode({
-            render    : "canvas",
-            text    : shareUrl,
-            width : "200",               //二维码的z宽度
-            height : "200",              //二维码的高度
-            background : "#ffffff",       //二维码的后景色
-            foreground : "#000000",        //二维z码的前景色
-            src: image            //二维码中间的图片
-        });
-
-        function convertCanvasToImage(canvas) {
-            //新Image对象，可以理解为DOM
-            var image = new Image();
-            // canvas.toDataURL 返回的是一串Base64编码的URL，当然,浏览器自己肯定支持
-            // 指定格式 PNG
-            image.src = canvas.toDataURL("image/png");
-            return image;
-        }
-        var mycanvas1=document.getElementsByTagName('canvas')[0]; //获取网页中的canvas对象
-        var img=convertCanvasToImage(mycanvas1);
-        $('#scanPayImg').html("");//移除已生成的避免重复生成
-        $('#scanPayImg').append(img);//imagQrDiv表示你要插入的容器id
-
+        $(document).ready(function(){
+            date();
+        })
 
 //使用h5的canvas实现两张图片的合并
-//         $mergedImage = $('.img-boxs .merged')[0],
-//         $mergedImage = $('.img-boxs .merged')[0],
-        var icon = $("#icon").attr('src');
-        var imgs = document.getElementById("scanPayImg").getElementsByTagName("img");
-        var src = imgs[0].src;
-        var data=["images/gray.jpg",src,icon],base64=[];
+//         var icon = $("#icon").attr('src');
+//         var imgs = document.getElementById("scanPayImg").getElementsByTagName("img");
+//         var src = imgs[0].src;
+        var code = $('#code').attr('src');
+        var data=["images/shareImg.png",code],base64=[];
         function date(){
             var Mycanvas=document.createElement("canvas"),
                 ct=Mycanvas.getContext("2d"),
                 len=data.length;
             Mycanvas.width=300;
-            Mycanvas.height=300;
+            Mycanvas.height=500;
             ct.rect(0,0,Mycanvas.width,Mycanvas.height);
             ct.fillStyle='#fff';
             ct.fill();
@@ -130,7 +97,7 @@
                     img.src=data[n];
                     console.log(data[n]);
                     img.onload=function(){
-                        ct.drawImage(this,0,0,300,300,0,0,300,300);
+                        ct.drawImage(this,0,0,300,500,0,0,300,500);
                         draw(n+1);
                     }
                 }else{
@@ -140,7 +107,6 @@
                 }
             }
             draw(0)
-
         }
 //js img转换base64
 //         function getBase64Image(img) {
@@ -158,7 +124,7 @@
 //         function main() {
 //             var img = document.createElement('img');
 //             // var imgs = $("#icon");
-//             var imgs = document.getElementById("scanPayImg").getElementsByTagName("img");
+//             var imgs = document.getElementById("qrcodeCanvas").getElementsByTagName("img");
 //             var src = imgs[0].src;
 //             img.src = src;  //此处自己替换本地图片的地址
 //             img.onload =function() {
@@ -170,6 +136,14 @@
 //             }
 //         }
 //         main()
+
+
+//     //获取网页中的canvas对象
+//     var mycans=$('canvas')[0];
+//     //调用convertCanvasToImage函数将canvas转化为img形式
+//     var img=convertCanvasToImage(mycans);
+//     //将img插入容器
+//     $('#qr').append(img);
 
 
 

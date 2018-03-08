@@ -42,14 +42,22 @@ public class StoreCtrl extends StringUtil {
 		user.setOppen_id(oppen_id);
 		List<User> list = userService.listById(user);
 		String imgUrl = list.get(0).getHead_img();
+		String qrCode = "http://qr.liantu.com/api.php?text="
+				+ "http://www.mytpin.com/page/storeShare.html?open_id="+oppen_id
+				+ "&w=300"
+				+ "&logo="+imgUrl
+				+ "&m=10"
+				+ "&pt=ff3c00"
+				;
 		try {
-			download(imgUrl, oppen_id, url);
+			download(qrCode, oppen_id, url);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		String iconPath = "img/"+oppen_id+".jpg";
 		Map<String, String> img = new HashMap<>();
-		img.put("iconPath",iconPath);
+		img.put("iconPath", iconPath);
+		img.put("qrCode", qrCode);
 		ModelAndView ml = new ModelAndView();
 		ml.addObject("user", list);
 		ml.addObject("img", img);
