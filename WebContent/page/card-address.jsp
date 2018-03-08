@@ -16,7 +16,7 @@
 
 <body id="wrap">
 
-<div class="sjsc-title1" style="border-bottom:1px solid #ABD13E">
+<div class="sjsc-title1" style="border-bottom:0px solid #559a4d; background-color: #559a4d">
 	<h3 class="sjsc-t1l f-l"><a href="JavaScript:history.go(-1);"><img src="images/back.png" alt="" style="width:20px;height: 20px;padding-top: 11px;padding-left: 5px"/></a></h3>
 	<%--<button class="sjsc-btn1 f-r" onclick="add()">保存</button>--%>
 	<div style="clear:both;"></div>
@@ -24,6 +24,16 @@
 
 
 <ul class="xzdz-ul1">
+	<%--<li>--%>
+		<%--<img src="images/cardBg.jpg" style="width: 100%">--%>
+		<div style="background-image: url('images/cardBg.jpg'); background-size:100%; height: 150px;">
+			<input id="cardInfo" value="请选择卡券" disabled="disabled"
+				   style="border: transparent; margin-top: 100px; text-align:center; vertical-align:middle; width: 100%; font-size: 20px; height: 50px; background-color: transparent;">
+		</div>
+		<div style="align-items: center; height: 50px">
+			<button id="openCard" onclick="chooseCard()"style="height:50px; width: 100%; margin: 0 auto; display: block; font-size: 20px; color: black; background-color: #9ee496">打开我的卡包</button>
+		</div>
+	<%--</li>--%>
 	<li>
 		<p class="xzdz-p1 f-l">收货人</p>
 		<input type="text" placeholder="姓名" class="xzdz-ipt1 f-l" id="addr_user"/>
@@ -46,25 +56,14 @@
 	</li>
 
 </ul>
-</br>
-</br>
-
-<div style="align-items: center; height: 50px">
-	<button id="openCard" onclick="chooseCard()"style="margin: 0 auto; display: block;font-size: 20px;">打开我的卡包</button>
-</div>
-</br>
-</br>
-
 <div style="align-items: center">
-	<input id="cardInfo" value="请选择卡券" disabled="disabled" style="text-align:center; vertical-align:middle; width: 100%; font-size: 30px; color: #FF3C00; height: 50px">
+	<input id="cardInfo" type="hidden" value="请选择卡券" disabled="disabled" style="text-align:center; vertical-align:middle; width: 100%; font-size: 30px; color: #FF3C00; height: 50px">
 	<input id="orderId" type="hidden" value="" disabled="disabled"  style="text-align:center; vertical-align:middle; width: 100%; font-size: 15px">
 	<input id="cardCode" type="hidden" value="" disabled="disabled" style="text-align:center; vertical-align:middle; width: 100%; font-size: 15px">
 	<input id="cardId" type="hidden" value="" disabled="disabled" style="text-align:center; vertical-align:middle; width: 100%; font-size: 15px">
 </div>
-</br>
-</br>
 <div class="quanbu-title2" style="align-items: center">
-	<button style="width: 100%; margin: 0 auto; display: block; font-size: 20px; color: white; background-color: #ff3c00" onclick="add()">提交地址并使用卡券</button>
+	<button style="height: 50px; width: 100%; margin: 0 auto; display: block; font-size: 20px; color: black; background-color: #9ee496" onclick="add()">提交地址并使用卡券</button>
 </div>
 <%--<div class="quanbu-title2" style="align-items: center">--%>
 	<%--<button style="visibility: hidden; width: 100%; margin: 0 auto; display: block; font-size: 20px; color: white; background-color: #ff3c00" onclick="demo()">demo</button>--%>

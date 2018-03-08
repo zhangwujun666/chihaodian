@@ -173,14 +173,18 @@ public class UserCtrl extends StringUtil {
 	}
 
 	@RequestMapping(value = "/page/center.html")
-	public ModelAndView userListById(String oppen_id, HttpSession session) {
+	public ModelAndView userListById(String oppen_id, HttpSession session, HttpServletRequest request) {
+		String url = request.getSession().getServletContext().getRealPath("");
 //		setOppen_id("111", session);// 测试代码，模仿登录
 		oppen_id = getOppen_id(session);
 		user.setOppen_id(oppen_id);
 		List<User> list = userService.listById(user);
 		Integer point = list.get(0).getPoint();
 		String userLevel = userPointUtil.userLevel(point);
+//		String levelImg = url + "/page/images/" + userLevel + ".png";
+		String levelImg = "/page/images/" + userLevel + ".png";
 		ModelAndView ml = new ModelAndView();
+		ml.addObject("levelImg", levelImg);
 		ml.addObject("userLevel", userLevel);
 		ml.addObject("user", list);
 		ml.setViewName("page/center");

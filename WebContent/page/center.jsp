@@ -18,10 +18,11 @@
 </head>
 <body>
 <section class="content">
-    <header class="user-info" style="background-color: #FF0000;">
+    <header class="user-info" style="background-color: #c30303;">
         <section class="user-basic" style="height: 120px">
         <c:forEach items="${user}" var="list">
-        <img src="${list.head_img}">
+        <img src="${list.head_img}" style="margin-left: 20%">
+            <img src="${levelImg}" style="float: right;">
         <div class="user-name">${list.realname}</div>
          </c:forEach>
         </section>
@@ -33,6 +34,7 @@
             <div class="slide-link" style="background: white">
                 <img src="images/wd-012-1.png">
                 我的等级 : ${userLevel}
+                <%--<img src="${levelImg}" style="float: right;">--%>
             </div>
         <%--</c:forEach>--%>
     </section>
