@@ -29,10 +29,20 @@
     <div style="background-color: #F3F3F3;height: 10px"></div>
 
     <section class="f-section" style="line-height: 30px">
+        <%--<c:forEach items="${user}" var="list">--%>
+            <div class="slide-link" style="background: white">
+                <img src="images/wd-012-1.png">
+                我的等级 : ${userLevel}
+            </div>
+        <%--</c:forEach>--%>
+    </section>
+    <div style="background-color: #F3F3F3;height: 10px"></div>
+
+    <section class="f-section" style="line-height: 30px">
         <c:forEach items="${user}" var="list">
             <div class="slide-link" style="background: white">
              <img src="images/wd-012-1.png">
-                我的积分 : ${list.realname}
+                我的积分 : ${list.point}
             </div>
         </c:forEach>
     </section>

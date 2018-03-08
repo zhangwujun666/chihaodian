@@ -27,6 +27,8 @@ import com.yq.util.PageUtil;
 import com.yq.entity.Cart;
 import com.yq.entity.User;
 
+import com.yq.util.userPointUtil;
+
 @Controller
 @RequestMapping
 public class UserCtrl extends StringUtil {
@@ -176,7 +178,10 @@ public class UserCtrl extends StringUtil {
 		oppen_id = getOppen_id(session);
 		user.setOppen_id(oppen_id);
 		List<User> list = userService.listById(user);
+		Integer point = list.get(0).getPoint();
+		String userLevel = userPointUtil.userLevel(point);
 		ModelAndView ml = new ModelAndView();
+		ml.addObject("userLevel", userLevel);
 		ml.addObject("user", list);
 		ml.setViewName("page/center");
 		return ml;
