@@ -78,7 +78,7 @@ public class StoreCtrl extends StringUtil {
 		oppen_id = getOppen_id(session);
 		user.setOppen_id(oppen_id);
 		List<User> list = userService.listById(user);
-
+        Integer point = list.get(0).getPoint();
 		ModelAndView ml = new ModelAndView();
 		ml.setViewName("page/index");
 		return ml;

@@ -28,6 +28,10 @@
     <update id="upmbertime" parameterType="java.util.Map">
     update tb_user set member_time=#{member_time} where oppen_id=#{oppen_id}
     </update>  
+    
+    <update id="updatepoint" parameterType="java.util.Map">
+        updata tb_user set point=#{point} where oppen_id=#{open_id}
+    </update>
           
     <select id="list" resultType="com.yq.entity.User">
     select * from tb_user where 1=1

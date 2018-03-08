@@ -24,6 +24,8 @@ public interface UserDao {
 	
 	public List<User> listById(User user); 
 	
-	public int isMember(User user); 
+	public int isMember(User user);
+
+	public int updatepoint(Map<String, String> map);
 	
 }

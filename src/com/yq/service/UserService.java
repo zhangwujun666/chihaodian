@@ -49,4 +49,8 @@ public class UserService{
 	public int isMember(User user){
 		return userDao.isMember(user);
 	}
+
+	public  int updatepoint (Map<String, String> map){
+		return userDao.updatepoint(map);
+	}
 }
