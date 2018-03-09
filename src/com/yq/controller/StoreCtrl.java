@@ -143,8 +143,7 @@ public class StoreCtrl extends StringUtil {
      * @return
      */
     public void updatePointShare (String open_id){
-        Integer status = 0;
-		Integer point = userService.findPointByOppenId(open_id);
+    	Integer point = userService.findPointByOppenId(open_id);
 		Map<String, String> map = new HashMap<>();
         /*分享出去后的页面被打开后加50 积分（待沟通）*/
         //TODO
@@ -158,16 +157,15 @@ public class StoreCtrl extends StringUtil {
     /**
      * 购买加积分
      * @param open_id
-     * @param point
      * @param sum
      * @return
      */
-    public void updatePointBuy (String open_id, String point, String sum){
-        Integer status = 0;
-        Map<String, String> map = new HashMap<>();
-        point = point +
-                map.put("open_id", open_id);
-        map.put("point", point);
+    public void updatePointBuy (String open_id, Integer sum){
+		Integer point = userService.findPointByOppenId(open_id);
+		Map<String, String> map = new HashMap<>();
+        point = point + sum;
+        map.put("open_id", open_id);
+        map.put("point", String.valueOf(point));
         userService.updatepoint(map);
     }
 
