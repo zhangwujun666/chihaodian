@@ -92,12 +92,69 @@
             <div style="clear:both;"></div>
         </ul>
     </div>
+
+
+        <ul>
+            <li style="width: 50%; float: left; border-right: #9f9f9f;">
+                <ul style="margin-left: 10px; ">
+                    <img src="images/headText1.png" style="height: 40px; ">
+                    <span style="font-size: 9px; color: #a7a7a7;">送给你的不是礼物 而是一个美好的世界</span>
+                    <ul class="ssjg-ul1" style="padding-top:0;">
+                        <c:forEach items="${hotGoodsList}" var="goodsList">
+                            <li>
+                                <div class="ssjg-tu">
+                                    <a href="goodsListById.html?goods_id=${goodsList.goods_id}"><img src="${goodsList.goods_img}"></a>
+                                </div>
+                                <%--<h3><a href="goodsListById.html?goods_id=${goodsList.goods_id}">${goodsList.goods_name}</a></h3>--%>
+                                <%--<p class="ssjg-p2" style="font-size: 11px;padding-left: 5px"><span>${goodsList.goods_spe}</span></p>--%>
+                                <%--<dl class="ssjg-dl1">--%>
+                                    <%--<dt>--%>
+                                            <%--&lt;%&ndash; <p class="ssjg-p2" style="font-size: 9px;"><span>${goodsList.goods_spe}</span></p> &ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<p class="ssjg-p1" style="margin-top:10px;"><span>￥${goodsList.goods_price}</span></p>&ndash;%&gt;--%>
+                                    <%--</dt>--%>
+                                    <%--<dd><a href="javascript:;" onclick="add('${goodsList.goods_id}','${goodsList.goods_name}','${goodsList.goods_img}','${goodsList.goods_spe}','${goodsList.goods_price}','${goodsList.card_id}')"><img src="images/sjsc-09.gif" style="width: 25px;height: 25px"></a></dd>--%>
+                                    <%--<div style="clear:both;"></div>--%>
+                                <%--</dl>--%>
+                            </li>
+                        </c:forEach>
+                        <div style="clear:both;"></div>
+                    </ul>
+                </ul>
+            </li>
+            <li style="width: 50%; float: left; border-right: #9f9f9f; ">
+                <ul style="margin-left: 10px">
+                    <img src="images/headText2.png" style="height: 40px; ">
+                    <span style="font-size: 9px; color: #a7a7a7;">礼轻情意重</span>
+                    <ul class="ssjg-ul1" style="padding-top:0;">
+                        <c:forEach items="${hotGoodsList}" var="goodsList">
+                            <li>
+                                <div class="ssjg-tu">
+                                    <a href="goodsListById.html?goods_id=${goodsList.goods_id}"><img src="${goodsList.goods_img}"></a>
+                                </div>
+                                <%--<h3><a href="goodsListById.html?goods_id=${goodsList.goods_id}">${goodsList.goods_name}</a></h3>--%>
+                                <%--<p class="ssjg-p2" style="font-size: 11px;padding-left: 5px"><span>${goodsList.goods_spe}</span></p>--%>
+                                <%--<dl class="ssjg-dl1">--%>
+                                    <%--<dt>--%>
+                                            <%--&lt;%&ndash; <p class="ssjg-p2" style="font-size: 9px;"><span>${goodsList.goods_spe}</span></p> &ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<p class="ssjg-p1" style="margin-top:10px;"><span>￥${goodsList.goods_price}</span></p>&ndash;%&gt;--%>
+                                    <%--</dt>--%>
+                                    <%--<dd><a href="javascript:;" onclick="add('${goodsList.goods_id}','${goodsList.goods_name}','${goodsList.goods_img}','${goodsList.goods_spe}','${goodsList.goods_price}','${goodsList.card_id}')"><img src="images/sjsc-09.gif" style="width: 25px;height: 25px"></a></dd>--%>
+                                    <%--<div style="clear:both;"></div>--%>
+                                <%--</dl>--%>
+                            </li>
+                        </c:forEach>
+                        <div style="clear:both;"></div>
+                    </ul>
+                </ul>
+            </li>
+        </ul>
     <div class="ssjg">
-    	<ul class="ssjg-tit1">
-        	<li style="margin-left: 1%"><a href="JavaScript:;">★热门推荐★</a></li>
-        	<li style="text-align: right;"><a href="secGoodsList.html?is_recommend=1" >更多→</a></li>
+        <ul class="ssjg-tit1">
+            <li style="margin-left: 1%"><a href="JavaScript:;">热门推荐</a></li>
+            <li style="text-align: right;"><a href="secGoodsList.html?is_recommend=1" >更多→</a></li>
             <div style="clear:both;"></div>
         </ul>
+
         <ul class="ssjg-ul1" style="padding-top:0;">
         <c:forEach items="${hotGoodsList}" var="goodsList">
         	<li>

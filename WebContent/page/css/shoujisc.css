@@ -248,7 +248,8 @@
 .quanbu-title1 .current{ border-bottom:1px solid #f60;}
 .quanbu-title1 .current a{ color:#f60;}
 
-.quanbu-ul1{ width:100%; padding:6px 0; background-color:#f9f8f2; position:fixed; left:0; bottom:0;}
+.quanbu-ul1{ width:100%; padding:6px 0;  position:fixed; left:0; bottom:0; backdrop-filter: blur(10px); background: rgba(216, 216, 216, 0.8);; -webkit-backdrop-filter: blur(10px);
+}
 .quanbu-ul1 li{ float:left; width:20%; text-align:center;}
 .quanbu-ul1 li .qu-tu1{ width:100%; height:100%; margin:0 auto;}
 .qu-tu1 .atu1{}
@@ -263,7 +264,7 @@
 .ssjg-tit1{border-bottom:1px solid #E5E5E5; background:#f7f7f7; padding:0 10px;}
 .ssjg-tit1 li{  width:49%; float:left; height:30px; line-height:30px;}
 .ssjg-tit1 li span{ font-family:"宋体"; font-size:12px; margin-left:3px;}
-.ssjg-tit1 li a{ display:block; font-size:20px; color:#ff3c00;}
+.ssjg-tit1 li a{ display:block; font-size:18px; color:#000000;}
 .ssjg-tit1 .on a{ color:#E64D5D;}
 
 /*************我想要手机商城订单提交成功*********************/
