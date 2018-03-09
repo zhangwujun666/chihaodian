@@ -1,10 +1,9 @@
 package com.yq.controller;
 
-import com.yq.entity.Category;
-import com.yq.entity.Goods;
+import com.yq.dao.ShareDao;
+import com.yq.entity.Share;
 import com.yq.entity.User;
-import com.yq.service.CategoryService;
-import com.yq.service.GoodsService;
+import com.yq.service.ShareService;
 import com.yq.service.UserService;
 import com.yq.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +24,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.yq.util.userPointUtil;
+
 @Controller
 @RequestMapping
 public class StoreCtrl extends StringUtil {
 	@Autowired
 	private UserService userService;
 	private User user = new User();
+	@Autowired
+	private ShareService shareService;
+	private Share share = new Share();
 
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -68,23 +72,42 @@ public class StoreCtrl extends StringUtil {
 
 	/**
 	 * 分享店铺
-	 * @param oppen_id
+	 * @param open_id
 	 * @param request
 	 * @param session
 	 * @return
 	 */
 	@RequestMapping(value = "/page/storeShare.html")
-	public ModelAndView goodsListById(String oppen_id,HttpServletRequest request,HttpSession session) {
-		oppen_id = getOppen_id(session);
+	public ModelAndView goodsListById(String open_id,HttpServletRequest request, HttpSession session) {
+		String oppen_id = getOppen_id(session);
+		//打开页面的user
 		user.setOppen_id(oppen_id);
-		List<User> list = userService.listById(user);
-        Integer point = list.get(0).getPoint();
+		//分享页面的user的积分
+//		Integer point = userService.findPointByOppenId(open_id);
+//		List<User> list = userService.listById(user);
+		//添加积分(重复浏览不生效)
+		Map<String, String> map = new HashMap<>();
+		map.put("share_oppen_id", open_id);
+		map.put("user_oppen_id", oppen_id);
+
+		Integer count = shareService.countByOppenID(map);
+		if(count < 1){
+			updatePointShare(open_id);
+			shareService.insert(map);
+		}
+        //添加记录
 		ModelAndView ml = new ModelAndView();
 		ml.setViewName("page/index");
 		return ml;
 	}
 
-
+    /**
+     * 下载类
+     * @param urlString
+     * @param filename
+     * @param realUrl
+     * @throws Exception
+     */
 	public static void download(String urlString, String filename, String realUrl) throws Exception {
 		String savePath = realUrl + "/page/img/";
 		// 构造URL
@@ -113,5 +136,39 @@ public class StoreCtrl extends StringUtil {
 			os.close();
 			is.close();
 	}
+
+    /**
+     * 分享加积分
+     * @param open_id
+     * @return
+     */
+    public void updatePointShare (String open_id){
+        Integer status = 0;
+		Integer point = userService.findPointByOppenId(open_id);
+		Map<String, String> map = new HashMap<>();
+        /*分享出去后的页面被打开后加50 积分（待沟通）*/
+        //TODO
+        point = point + 50;
+        String addPoint = String.valueOf(point);
+        map.put("open_id", open_id);
+        map.put("point", addPoint);
+        userService.updatepoint(map);
+    }
+
+    /**
+     * 购买加积分
+     * @param open_id
+     * @param point
+     * @param sum
+     * @return
+     */
+    public void updatePointBuy (String open_id, String point, String sum){
+        Integer status = 0;
+        Map<String, String> map = new HashMap<>();
+        point = point +
+                map.put("open_id", open_id);
+        map.put("point", point);
+        userService.updatepoint(map);
+    }
 
 }

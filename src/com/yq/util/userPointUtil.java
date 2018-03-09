@@ -43,9 +43,9 @@ public class userPointUtil {
         /*分享出去后的页面被打开后加50 积分（待沟通）*/
         //TODO
         point = point + 50;
-//        point = point.to
+        String addPoint = String.valueOf(point);
         map.put("open_id", open_id);
-        map.put("point", point);
+        map.put("point", addPoint);
         status = userService.updatepoint(map);
         return status;
     }

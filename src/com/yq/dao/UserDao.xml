@@ -30,7 +30,7 @@
     </update>  
     
     <update id="updatepoint" parameterType="java.util.Map">
-        updata tb_user set point=#{point} where oppen_id=#{open_id}
+        update tb_user set point=#{point} where oppen_id=#{open_id}
     </update>
           
     <select id="list" resultType="com.yq.entity.User">
@@ -54,5 +54,11 @@
    
     <select id="isMember" resultType="int">
     select count(1) from tb_user where oppen_id=#{oppen_id} and member_time>#{member_time}
+    </select>
+    
+    <select id="findPointByOppenId" resultType="int">
+        select point
+        from tb_user
+        where oppen_id = #{oppen_id}
     </select>
 </mapper>

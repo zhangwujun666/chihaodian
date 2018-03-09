@@ -27,5 +27,7 @@ public interface UserDao {
 	public int isMember(User user);
 
 	public int updatepoint(Map<String, String> map);
+
+	public int findPointByOppenId(String oppen_id);
 	
 }
