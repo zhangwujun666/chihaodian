@@ -99,6 +99,7 @@
                 <ul style="margin-left: 10px; ">
                     <img src="images/headText1.png" style="height: 40px; ">
                     <span style="font-size: 9px; color: #a7a7a7;">送给你的不是礼物 而是一个美好的世界</span>
+                    <div style="height: 10px;"></div>
                     <ul class="ssjg-ul1" style="padding-top:0;">
                         <c:forEach items="${hotGoodsList}" var="goodsList">
                             <li>
@@ -125,6 +126,7 @@
                 <ul style="margin-left: 10px">
                     <img src="images/headText2.png" style="height: 40px; ">
                     <span style="font-size: 9px; color: #a7a7a7;">礼轻情意重</span>
+                    <div style="height: 10px;"></div>
                     <ul class="ssjg-ul1" style="padding-top:0;">
                         <c:forEach items="${hotGoodsList}" var="goodsList">
                             <li>
