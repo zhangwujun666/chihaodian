@@ -180,11 +180,14 @@ public class UserCtrl extends StringUtil {
 		user.setOppen_id(oppen_id);
 		List<User> list = userService.listById(user);
 		Integer point = list.get(0).getPoint();
-		String userLevel = userPointUtil.userLevel(point);
+		Map<String, String> userLevelAndName = userPointUtil.userLevel(point);
+		String userLevel = userLevelAndName.get("level");
+		String name = userLevelAndName.get("name");
 //		String levelImg = url + "/page/images/" + userLevel + ".png";
 		String levelImg = "/page/images/" + userLevel + ".png";
 		ModelAndView ml = new ModelAndView();
 		ml.addObject("levelImg", levelImg);
+		ml.addObject("name",name);
 		ml.addObject("userLevel", userLevel);
 		ml.addObject("user", list);
 		ml.setViewName("page/center");

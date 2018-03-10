@@ -18,7 +18,7 @@
 </head>
 <body>
 <section class="content">
-    <header class="user-info" style="background-color: #c30303;">
+    <header class="user-info" style="background-image: url(images/head.png); background-size: 100%; background-repeat: no-repeat; height: 130px;">
         <section class="user-basic" style="height: 120px">
         <c:forEach items="${user}" var="list">
         <img src="${list.head_img}" style="margin-left: 20%">
@@ -32,8 +32,8 @@
     <section class="f-section" style="line-height: 30px">
         <%--<c:forEach items="${user}" var="list">--%>
             <div class="slide-link" style="background: white">
-                <img src="images/wd-012-1.png">
-                我的等级 : ${userLevel}
+                <img src="images/wd-012-06.png">
+                我的等级 : ${name}
                 <%--<img src="${levelImg}" style="float: right;">--%>
             </div>
         <%--</c:forEach>--%>
@@ -43,7 +43,7 @@
     <section class="f-section" style="line-height: 30px">
         <c:forEach items="${user}" var="list">
             <div class="slide-link" style="background: white">
-             <img src="images/wd-012-1.png">
+             <img src="images/wd-012-04.png">
                 我的积分 : ${list.point}
             </div>
         </c:forEach>
@@ -79,7 +79,7 @@
     <div style="background-color: #F3F3F3;height: 10px"></div>
         <section class="f-section">
             <a class="slide-link" href="store.html">
-                <img src="images/wd-012-02.png">
+                <img src="images/sjsc23-3.gif">
                 分享店铺 </a>
         </section>
     </section>
