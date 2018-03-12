@@ -53,7 +53,7 @@
     <section class="f-section" style="line-height: 30px">
         <c:forEach items="${user}" var="list">
             <div class="slide-link" style="background: white">
-                <img src="images/wd-012-04.png">
+                <img src="images/sjsc23-6.gif">
                 我的优惠券积分 : ${list.coupons}
             </div>
         </c:forEach>

@@ -62,12 +62,14 @@
 					<tr class="text-c">
 						<th width="25px"><input type="checkbox" name="" value=""></th>
 						<th width="30px">ID</th>
-						<th width="20%">昵称</th>
-						<th width="20%">头像</th>
+						<th width="15%">昵称</th>
+						<th width="10%">头像</th>
 						<th width="10%">添加时间</th>
 						<th width="20%">自提点</th>
 						<th width="15%">会员卡时效</th>
-						<th width="15%">操作</th>
+						<th width="10%">会员经验值</th>
+						<th width="10%">会员积分</th>
+						<th width="20%">操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -81,6 +83,8 @@
 							<td>${list.area_name}</td>
 							<td><input type="text" id="member_time${s.count}" onfocus="WdatePicker()" 
 								placeholder="请填写有效时间" value="${list.member_time}" class="input-text" > </td>
+							<td>${list.point}</td>
+							<td>${list.coupons}</td>
 							<td>
 						 <a href="javascript:;" onclick="upmbertime('${s.count}','${list.oppen_id}')">设置会员</a>
 							</td>
@@ -183,10 +187,10 @@
 				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
 				"bStateSave" : true,//状态保存
 				"aoColumnDefs" : [
-				//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+				// {"bVisible": false, "aTargets": [ 3 ]},//控制列的隐藏显示
 				{
-					"orderable" : false,
-					"aTargets" : [ 0, 2, 4 ]
+					"orderable" : true,
+                    "aTargets" : [ 0, 2, 4 ]
 				} // 制定列不参与排序
 				]
 			});
