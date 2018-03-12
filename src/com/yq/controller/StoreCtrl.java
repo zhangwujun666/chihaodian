@@ -20,6 +20,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,7 @@ public class StoreCtrl extends StringUtil {
 				+ "&pt=ff3c00"
 				;
 		try {
-			download(qrCode, oppen_id, url);
+			userPointUtil.download(qrCode, oppen_id, url);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,6 +81,8 @@ public class StoreCtrl extends StringUtil {
 	@RequestMapping(value = "/page/storeShare.html")
 	public ModelAndView goodsListById(String open_id,HttpServletRequest request, HttpSession session) {
 		String oppen_id = getOppen_id(session);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String add_time = sdf.format(new Date());
 		//打开页面的user
 		user.setOppen_id(oppen_id);
 		//分享页面的user的积分
@@ -89,10 +92,12 @@ public class StoreCtrl extends StringUtil {
 		Map<String, String> map = new HashMap<>();
 		map.put("share_oppen_id", open_id);
 		map.put("user_oppen_id", oppen_id);
+		map.put("add_time", add_time);
 
 		Integer count = shareService.countByOppenID(map);
 		if(count < 1){
-			updatePointShare(open_id);
+//			updatePointShare(open_id);
+			userPointUtil.updatePointShare(open_id);
 			shareService.insert(map);
 		}
         //添加记录
@@ -101,72 +106,5 @@ public class StoreCtrl extends StringUtil {
 		return ml;
 	}
 
-    /**
-     * 下载类
-     * @param urlString
-     * @param filename
-     * @param realUrl
-     * @throws Exception
-     */
-	public static void download(String urlString, String filename, String realUrl) throws Exception {
-		String savePath = realUrl + "/page/img/";
-		// 构造URL
-		URL url = new URL(urlString);
-		// 打开连接
-		URLConnection con = url.openConnection();
-		//设置请求超时为5s
-		con.setConnectTimeout(5*1000);
-		// 输入流
-		InputStream is = con.getInputStream();
-		// 1K的数据缓冲
-	 	byte[] bs = new byte[1024];
-		// 读取到的数据长度
-		int len;
-		// 输出的文件流
-		File sf=new File(savePath);
-		if(!sf.exists()){
-			sf.mkdirs();
-			  }
-		OutputStream os = new FileOutputStream(sf.getPath()+"/"+filename+".jpg");
-		// 开始读取
-		while ((len = is.read(bs)) != -1) {
-				os.write(bs, 0, len);
-		}
-		     // 完毕，关闭所有链接
-			os.close();
-			is.close();
-	}
-
-    /**
-     * 分享加积分
-     * @param open_id
-     * @return
-     */
-    public void updatePointShare (String open_id){
-    	Integer point = userService.findPointByOppenId(open_id);
-		Map<String, String> map = new HashMap<>();
-        /*分享出去后的页面被打开后加50 积分（待沟通）*/
-        //TODO
-        point = point + 50;
-        String addPoint = String.valueOf(point);
-        map.put("open_id", open_id);
-        map.put("point", addPoint);
-        userService.updatepoint(map);
-    }
-
-    /**
-     * 购买加积分
-     * @param open_id
-     * @param sum
-     * @return
-     */
-    public void updatePointBuy (String open_id, Integer sum){
-		Integer point = userService.findPointByOppenId(open_id);
-		Map<String, String> map = new HashMap<>();
-        point = point + sum;
-        map.put("open_id", open_id);
-        map.put("point", String.valueOf(point));
-        userService.updatepoint(map);
-    }
 
 }

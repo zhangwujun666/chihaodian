@@ -13,6 +13,7 @@ public class User extends Page{
     String member_time;
     int status;
     int point;
+    String coupons;
 
     public int getPoint() {
         return point;
@@ -86,5 +87,10 @@ public class User extends Page{
     public void setMember_time(String member_time) {
         this.member_time = member_time;
     }
-
+    public String getCoupons() {
+        return coupons;
+    }
+    public void setCoupons(String coupons) {
+        this.coupons = coupons;
+    }
 }

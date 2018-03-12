@@ -57,4 +57,12 @@ public class UserService{
 	public int findPointByOppenId(String oppen_id){
 		return userDao.findPointByOppenId(oppen_id);
 	}
+
+	public int findCouponsByOppenId(String oppen_id){
+		return  userDao.findCouponsByOppenId(oppen_id);
+	}
+
+	public int updateCoupons(Map<String, String> map) {
+		return userDao.updateCoupons(map);
+	}
 }

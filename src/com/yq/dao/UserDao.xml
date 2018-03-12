@@ -32,6 +32,9 @@
     <update id="updatepoint" parameterType="java.util.Map">
         update tb_user set point=#{point} where oppen_id=#{open_id}
     </update>
+    <update id="updateCoupons" parameterType="java.util.Map">
+        update tb_user set coupons=#{coupons} where oppen_id=#{open_id}
+    </update>
           
     <select id="list" resultType="com.yq.entity.User">
     select * from tb_user where 1=1
@@ -60,5 +63,11 @@
         select point
         from tb_user
         where oppen_id = #{oppen_id}
+    </select>
+
+    <select id="findCouponsByOppenId" resultType="int">
+        select coupons
+        from tb_user
+        where coupons = #{coupons}
     </select>
 </mapper>

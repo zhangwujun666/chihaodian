@@ -29,5 +29,9 @@ public interface UserDao {
 	public int updatepoint(Map<String, String> map);
 
 	public int findPointByOppenId(String oppen_id);
+
+	public int findCouponsByOppenId(String oppen_id);
+
+	public int updateCoupons(Map<String, String> map);
 	
 }

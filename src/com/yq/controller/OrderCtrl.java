@@ -46,6 +46,7 @@ import com.yq.util.StringUtil;
 
 import net.sf.json.JSONArray;
 import com.yq.util.wxsign;
+import com.yq.util.userPointUtil;
 
 @Controller
 @RequestMapping
@@ -527,266 +528,127 @@ public class OrderCtrl extends StringUtil {
 		return orderService.delete(map) + "";
 	}
 
-//	@RequestMapping(value = "/page/orderList.html")
-//	public ModelAndView list(@RequestParam(defaultValue = "-2") Integer status, String oppen_id, HttpSession session, HttpServletRequest request) throws UnsupportedEncodingException {
-//		// setOppen_id("111", session);// 测试代码，模仿登录
-//
-//		HttpServletRequest httpRequest=(HttpServletRequest)request;
-//		String strBackUrl = "http://" + request.getServerName() //服务器地址
-////				+ ":"
-////				+ request.getServerPort()           //端口号
-//				+ httpRequest.getContextPath()      //项目名称
-//				+ httpRequest.getServletPath();      //请求页面或其他地址
-////				+ "?" + (httpRequest.getQueryString()); //参数
-//
-//		order.setOppen_id(getOppen_id(session));
-//		order.setStatus(-2);
-//		order.setStart_time("");
-//		order.setEnd_time("");
-//		order.setCtg_name("");
-//		order.setGoods_name("");
-//		order.setAddr_name("");
-//		List<Order> list = orderService.list(order); // 全部订单
-//		System.out.println("list=" + list.size());
-//		if (list.size() > 0) {
-//			for (int i = 0; i < list.size(); i++) {
-//				List<Order> ordList = new ArrayList<Order>();
-//				String[] gId = list.get(i).getGoods_id().split(",-=");
-//				String[] gCardId = list.get(i).getCard_id().split(",-=");
-//				String[] gName = list.get(i).getGoods_name().split(",-=");
-//				String[] gImg = list.get(i).getGoods_img().split(",-=");
-//				String[] gPrice = list.get(i).getGoods_price().split(",-=");
-//				String[] gNum = list.get(i).getGoods_num().split(",-=");
-//				String[] gCardStatus = list.get(i).getCard_status().split(",-=");
-//
-//				for (int m = 0; m < gId.length; m++) {
-//					Order ord = new Order();
-//					ord.setGoods_id(gId[m]);
-//					ord.setCard_id(gCardId[m]);
-//					ord.setGoods_name(gName[m]);
-//					ord.setGoods_img(gImg[m]);
-//					ord.setGoods_price(gPrice[m]);
-//					ord.setGoods_num(gNum[m]);
-//					ord.setCard_status(gCardStatus[m]);
-//					ordList.add(ord);
-//				}
-//				map.put("ord" + i, ordList);
-//			}
-//		}
-//		order.setStatus(0);
-//		List<Order> list0 = orderService.list(order);// 待付款订单
-//		if (list0.size() > 0) {
-//			for (int i = 0; i < list0.size(); i++) {
-//				List<Order> ordList = new ArrayList<Order>();
-//				String[] gId = list0.get(i).getGoods_id().split(",-=");
-//				String[] gCardId = list.get(i).getCard_id().split(",-=");
-//				String[] gName = list0.get(i).getGoods_name().split(",-=");
-//				String[] gImg = list0.get(i).getGoods_img().split(",-=");
-//				String[] gPrice = list0.get(i).getGoods_price().split(",-=");
-//				String[] gNum = list0.get(i).getGoods_num().split(",-=");
-//				String[] gCardStatus = list.get(i).getCard_status().split(",-=");
-//				for (int m = 0; m < gId.length; m++) {
-//					Order ord = new Order();
-//					ord.setGoods_id(gId[m]);
-//					ord.setCard_id(gCardId[m]);
-//					ord.setGoods_name(gName[m]);
-//					ord.setGoods_img(gImg[m]);
-//					ord.setGoods_price(gPrice[m]);
-//					ord.setGoods_num(gNum[m]);
-//					ord.setCard_status(gCardStatus[m]);
-//					ordList.add(ord);
-//				}
-//				map.put("ord0" + i, ordList);
-//			}
-//		}
-//
-//		order.setStatus(1);
-//		List<Order> list1 = orderService.list(order);// 已付款待发货订单
-//		if (list1.size() > 0) {
-//			for (int i = 0; i < list1.size(); i++) {
-//				List<Order> ordList = new ArrayList<Order>();
-//				String[] gId = list1.get(i).getGoods_id().split(",-=");
-//				String[] gCardId = list.get(i).getCard_id().split(",-=");
-//				String[] gName = list1.get(i).getGoods_name().split(",-=");
-//				String[] gImg = list1.get(i).getGoods_img().split(",-=");
-//				String[] gPrice = list1.get(i).getGoods_price().split(",-=");
-//				String[] gNum = list1.get(i).getGoods_num().split(",-=");
-//				String[] gCardStatus = list.get(i).getCard_status().split(",-=");
-//				for (int m = 0; m < gId.length; m++) {
-//					Order ord = new Order();
-//					ord.setGoods_id(gId[m]);
-//					ord.setCard_id(gCardId[m]);
-//					ord.setGoods_name(gName[m]);
-//					ord.setGoods_img(gImg[m]);
-//					ord.setGoods_price(gPrice[m]);
-//					ord.setGoods_num(gNum[m]);
-//					ord.setCard_status(gCardStatus[m]);
-//					ordList.add(ord);
-//				}
-//				map.put("ord1" + i, ordList);
-//			}
-//		}
-//		order.setStatus(2);
-//		List<Order> list2 = orderService.list(order);// 已发货订单
-//		if (list2.size() > 0) {
-//			for (int i = 0; i < list2.size(); i++) {
-//				List<Order> ordList = new ArrayList<Order>();
-//				String[] gId = list2.get(i).getGoods_id().split(",-=");
-//				String[] gCardId = list.get(i).getCard_id().split(",-=");
-//				String[] gName = list2.get(i).getGoods_name().split(",-=");
-//				String[] gImg = list2.get(i).getGoods_img().split(",-=");
-//				String[] gPrice = list2.get(i).getGoods_price().split(",-=");
-//				String[] gNum = list2.get(i).getGoods_num().split(",-=");
-//				String[] gCardStatus = list.get(i).getCard_status().split(",-=");
-//				Order ord = new Order();
-//				for (int m = 0; m < gId.length; m++) {
-//					ord.setGoods_id(gId[m]);
-//					ord.setCard_id(gCardId[m]);
-//					ord.setGoods_name(gName[m]);
-//					ord.setGoods_img(gImg[m]);
-//					ord.setGoods_price(gPrice[m]);
-//					ord.setGoods_num(gNum[m]);
-//					ord.setCard_status(gCardStatus[m]);
-//					ordList.add(ord);
-//				}
-//				map.put("ord2" + i, ordList);
-//			}
-//		}
-//		String orderId = "";
-//		Map<String, String> list_wx = wxsign.main(strBackUrl, orderId);
-//		list_wx.put("openId", getOppen_id(session));
-//
-//		map.put("list", list);
-//		map.put("list0", list0);
-//		map.put("list1", list1);
-//		map.put("list2", list2);
-//		map.put("list_wx", list_wx);
-//		ModelAndView ml = new ModelAndView();
-//		ml.addObject("map", map);
-//		ml.setViewName("page/order-list");
-//		return ml;
-//	}
-		@RequestMapping(value = "/page/orderList.html")
-		public ModelAndView list(@RequestParam(defaultValue = "-2") Integer status, String oppen_id, HttpSession session, HttpServletRequest request) throws UnsupportedEncodingException {
-			// setOppen_id("111", session);// 测试代码，模仿登录
-			order.setOppen_id(getOppen_id(session));
-			order.setStatus(-2);
-			order.setStart_time("");
-			order.setEnd_time("");
-			order.setCtg_name("");
-			order.setGoods_name("");
-			order.setAddr_name("");
-			List<Order> list = orderService.list(order); // 全部订单
-			System.out.println("list=" + list.size());
-			if (list.size() > 0) {
-				for (int i = 0; i < list.size(); i++) {
-					List<Order> ordList = new ArrayList<Order>();
-					String[] gId = list.get(i).getGoods_id().split(",-=");
-					String[] gName = list.get(i).getGoods_name().split(",-=");
-					String[] gImg = list.get(i).getGoods_img().split(",-=");
-					String[] gPrice = list.get(i).getGoods_price().split(",-=");
-					String[] gNum = list.get(i).getGoods_num().split(",-=");
+	@RequestMapping(value = "/page/orderList.html")
+	public ModelAndView list(@RequestParam(defaultValue = "-2") Integer status, String oppen_id, HttpSession session, HttpServletRequest request) throws UnsupportedEncodingException {
+		// setOppen_id("111", session);// 测试代码，模仿登录
+		order.setOppen_id(getOppen_id(session));
+		order.setStatus(-2);
+		order.setStart_time("");
+		order.setEnd_time("");
+		order.setCtg_name("");
+		order.setGoods_name("");
+		order.setAddr_name("");
+		List<Order> list = orderService.list(order); // 全部订单
+		System.out.println("list=" + list.size());
+		if (list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				List<Order> ordList = new ArrayList<Order>();
+				String[] gId = list.get(i).getGoods_id().split(",-=");
+				String[] gName = list.get(i).getGoods_name().split(",-=");
+				String[] gImg = list.get(i).getGoods_img().split(",-=");
+				String[] gPrice = list.get(i).getGoods_price().split(",-=");
+				String[] gNum = list.get(i).getGoods_num().split(",-=");
 
-					for (int m = 0; m < gId.length; m++) {
-						Order ord = new Order();
-						ord.setGoods_id(gId[m]);
-						ord.setGoods_name(gName[m]);
-						ord.setGoods_img(gImg[m]);
-						ord.setGoods_price(gPrice[m]);
-						ord.setGoods_num(gNum[m]);
-						ordList.add(ord);
-					}
-					map.put("ord" + i, ordList);
-				}
-			}
-			order.setStatus(0);
-			List<Order> list0 = orderService.list(order);// 待付款订单
-			if (list0.size() > 0) {
-				for (int i = 0; i < list0.size(); i++) {
-					List<Order> ordList = new ArrayList<Order>();
-					String[] gId = list0.get(i).getGoods_id().split(",-=");
-					String[] gName = list0.get(i).getGoods_name().split(",-=");
-					String[] gImg = list0.get(i).getGoods_img().split(",-=");
-					String[] gPrice = list0.get(i).getGoods_price().split(",-=");
-					String[] gNum = list0.get(i).getGoods_num().split(",-=");
-					for (int m = 0; m < gId.length; m++) {
-						Order ord = new Order();
-						ord.setGoods_id(gId[m]);
-						ord.setGoods_name(gName[m]);
-						ord.setGoods_img(gImg[m]);
-						ord.setGoods_price(gPrice[m]);
-						ord.setGoods_num(gNum[m]);
-						ordList.add(ord);
-					}
-					map.put("ord0" + i, ordList);
-				}
-			}
-
-			order.setStatus(1);
-			List<Order> list1 = orderService.list(order);// 已付款待发货订单
-			if (list1.size() > 0) {
-				for (int i = 0; i < list1.size(); i++) {
-					List<Order> ordList = new ArrayList<Order>();
-					String[] gId = list1.get(i).getGoods_id().split(",-=");
-					String[] gName = list1.get(i).getGoods_name().split(",-=");
-					String[] gImg = list1.get(i).getGoods_img().split(",-=");
-					String[] gPrice = list1.get(i).getGoods_price().split(",-=");
-					String[] gNum = list1.get(i).getGoods_num().split(",-=");
-					for (int m = 0; m < gId.length; m++) {
-						Order ord = new Order();
-						ord.setGoods_id(gId[m]);
-						ord.setGoods_name(gName[m]);
-						ord.setGoods_img(gImg[m]);
-						ord.setGoods_price(gPrice[m]);
-						ord.setGoods_num(gNum[m]);
-						ordList.add(ord);
-					}
-					map.put("ord1" + i, ordList);
-				}
-			}
-			order.setStatus(2);
-			List<Order> list2 = orderService.list(order);// 已发货订单
-			if (list2.size() > 0) {
-				for (int i = 0; i < list2.size(); i++) {
-					List<Order> ordList = new ArrayList<Order>();
-					String[] gId = list2.get(i).getGoods_id().split(",-=");
-					String[] gName = list2.get(i).getGoods_name().split(",-=");
-					String[] gImg = list2.get(i).getGoods_img().split(",-=");
-					String[] gPrice = list2.get(i).getGoods_price().split(",-=");
-					String[] gNum = list2.get(i).getGoods_num().split(",-=");
+				for (int m = 0; m < gId.length; m++) {
 					Order ord = new Order();
-					for (int m = 0; m < gId.length; m++) {
-						ord.setGoods_id(gId[m]);
-						ord.setGoods_name(gName[m]);
-						ord.setGoods_img(gImg[m]);
-						ord.setGoods_price(gPrice[m]);
-						ord.setGoods_num(gNum[m]);
-						ordList.add(ord);
-					}
-					map.put("ord2" + i, ordList);
+					ord.setGoods_id(gId[m]);
+					ord.setGoods_name(gName[m]);
+					ord.setGoods_img(gImg[m]);
+					ord.setGoods_price(gPrice[m]);
+					ord.setGoods_num(gNum[m]);
+					ordList.add(ord);
 				}
+				map.put("ord" + i, ordList);
 			}
+		}
+		order.setStatus(0);
+		List<Order> list0 = orderService.list(order);// 待付款订单
+		if (list0.size() > 0) {
+			for (int i = 0; i < list0.size(); i++) {
+				List<Order> ordList = new ArrayList<Order>();
+				String[] gId = list0.get(i).getGoods_id().split(",-=");
+				String[] gName = list0.get(i).getGoods_name().split(",-=");
+				String[] gImg = list0.get(i).getGoods_img().split(",-=");
+				String[] gPrice = list0.get(i).getGoods_price().split(",-=");
+				String[] gNum = list0.get(i).getGoods_num().split(",-=");
+				for (int m = 0; m < gId.length; m++) {
+					Order ord = new Order();
+					ord.setGoods_id(gId[m]);
+					ord.setGoods_name(gName[m]);
+					ord.setGoods_img(gImg[m]);
+					ord.setGoods_price(gPrice[m]);
+					ord.setGoods_num(gNum[m]);
+					ordList.add(ord);
+				}
+				map.put("ord0" + i, ordList);
+			}
+		}
 
-			HttpServletRequest httpRequest=(HttpServletRequest)request;
-			String strBackUrl = "http://" + request.getServerName() //服务器地址
+		order.setStatus(1);
+		List<Order> list1 = orderService.list(order);// 已付款待发货订单
+		if (list1.size() > 0) {
+			for (int i = 0; i < list1.size(); i++) {
+				List<Order> ordList = new ArrayList<Order>();
+				String[] gId = list1.get(i).getGoods_id().split(",-=");
+				String[] gName = list1.get(i).getGoods_name().split(",-=");
+				String[] gImg = list1.get(i).getGoods_img().split(",-=");
+				String[] gPrice = list1.get(i).getGoods_price().split(",-=");
+				String[] gNum = list1.get(i).getGoods_num().split(",-=");
+				for (int m = 0; m < gId.length; m++) {
+					Order ord = new Order();
+					ord.setGoods_id(gId[m]);
+					ord.setGoods_name(gName[m]);
+					ord.setGoods_img(gImg[m]);
+					ord.setGoods_price(gPrice[m]);
+					ord.setGoods_num(gNum[m]);
+					ordList.add(ord);
+				}
+				map.put("ord1" + i, ordList);
+			}
+		}
+		order.setStatus(2);
+		List<Order> list2 = orderService.list(order);// 已发货订单
+		if (list2.size() > 0) {
+			for (int i = 0; i < list2.size(); i++) {
+				List<Order> ordList = new ArrayList<Order>();
+				String[] gId = list2.get(i).getGoods_id().split(",-=");
+				String[] gName = list2.get(i).getGoods_name().split(",-=");
+				String[] gImg = list2.get(i).getGoods_img().split(",-=");
+				String[] gPrice = list2.get(i).getGoods_price().split(",-=");
+				String[] gNum = list2.get(i).getGoods_num().split(",-=");
+				Order ord = new Order();
+				for (int m = 0; m < gId.length; m++) {
+					ord.setGoods_id(gId[m]);
+					ord.setGoods_name(gName[m]);
+					ord.setGoods_img(gImg[m]);
+					ord.setGoods_price(gPrice[m]);
+					ord.setGoods_num(gNum[m]);
+					ordList.add(ord);
+				}
+				map.put("ord2" + i, ordList);
+			}
+		}
+
+		HttpServletRequest httpRequest=(HttpServletRequest)request;
+		String strBackUrl = "http://" + request.getServerName() //服务器地址
 //				+ ":"
 //				+ request.getServerPort()           //端口号
-					+ httpRequest.getContextPath()      //项目名称
-					+ httpRequest.getServletPath();      //请求页面或其他地址
+				+ httpRequest.getContextPath()      //项目名称
+				+ httpRequest.getServletPath();      //请求页面或其他地址
 //				+ "?" + (httpRequest.getQueryString()); //参数
-			String orderId = "";
-			Map<String, String> list_wx = wxsign.main(strBackUrl, orderId);
-			list_wx.put("openId", getOppen_id(session));
+		String orderId = "";
+		Map<String, String> list_wx = wxsign.main(strBackUrl, orderId);
+		list_wx.put("openId", getOppen_id(session));
 
-			map.put("list", list);
-			map.put("list0", list0);
-			map.put("list1", list1);
-			map.put("list2", list2);
-			ModelAndView ml = new ModelAndView();
-			ml.addObject("map", map);
-			ml.setViewName("page/order-list");
-			return ml;
-		}
+		map.put("list", list);
+		map.put("list0", list0);
+		map.put("list1", list1);
+		map.put("list2", list2);
+		ModelAndView ml = new ModelAndView();
+		ml.addObject("map", map);
+		ml.setViewName("page/order-list");
+		return ml;
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/main/order.html")
@@ -900,6 +762,8 @@ public class OrderCtrl extends StringUtil {
 			HttpSession session) {
 		order.setOrder_id(order_id);
 		List<Order> list = orderService.listById(order);
+//		Float totalPrice = list.get(0).getGoods_total();
+//		Integer addConpons = totalPrice.intValue();
 		map.put("list", list);
 		ModelAndView ml = new ModelAndView();
 		if (list.size() > 0) {
@@ -945,13 +809,17 @@ public class OrderCtrl extends StringUtil {
 	 * 付款后微信返回信息，更改订单状态
 	 */
 	@RequestMapping(value = "/page/noticeOrder.html")
-	public void noticeOrder(HttpServletRequest request) {
+	public void noticeOrder(HttpServletRequest request, HttpSession session) {
+		String oppen_id = getOppen_id(session);
 		String xmlStr = NotifyServlet.getWxXml(request);
 		Map map2 = GetWxOrderno.doXMLParse(xmlStr);
 		String return_code = (String) map2.get("return_code");
 		String order_id = (String) map2.get("out_trade_no");
 		order.setOrder_id(order_id);
 		List<Order> list = orderService.listById(order);
+		Float totalPrice = list.get(0).getGoods_total();
+		Integer addConpons = totalPrice.intValue();
+		userPointUtil.updateCouponsBuy(oppen_id, addConpons);
 		map.put("order_id", order_id);
 		map.put("status", 1);
 		log.info("微信返回 ---->"+xmlStr);
