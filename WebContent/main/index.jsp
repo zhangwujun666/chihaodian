@@ -78,17 +78,18 @@ if(username==''){
 				<ul>
 					<li><a _href="ctgList.html?status=1" href="javascript:void(0)">分类查看</a></li>
 					<li><a _href="goodsList.html?status=1" href="javascript:void(0)">商品查看</a></li>
+					<li><a _href="goodscCount.html?status=1" href="javascript:void(0)">商品统计</a></li>
 				</ul>
 			</dd>
 		</dl>
-		<!-- <dl id="menu-product">
+		<dl id="menu-product">
 			<dt><i class="Hui-iconfont">&#xe620;</i> 菜单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
 					<li><a _href="menuList.html?status=1" href="javascript:void(0)"> 菜单查看</a></li>
 				</ul>
 			</dd>
-		</dl> -->
+		</dl>
 		<dl id="menu-product">
 			<dt><i class="Hui-iconfont">&#xe620;</i> 轮图管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
