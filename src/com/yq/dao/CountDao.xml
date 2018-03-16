@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.CountDao">
+    <insert id="insert" parameterType="java.util.Map">
+		insert tb_goods_view_count(goods_id,view_time,oppen_id)
+		values
+		(
+		#{goods_id},#{view_time},#{oppen_id}
+		)
+    </insert>
+    <select id="countByGoodsId" resultType="java.util.Map">
+		SELECT *
+		FROM(
+		SELECT
+		id,
+		date_format( str_to_date(view_time,'%Y-%m-%d %H:%i:%s'),'%Y-%m-%d' )  as "views",
+		count( * ) as "count"
+		FROM
+		tb_goods_view_count
+		WHERE
+		goods_id = #{goods_id}
+		GROUP BY
+		date_format(
+		str_to_date(view_time,'%Y-%m-%d %H:%i:%s'),'%Y-%m-%d')
+		ORDER BY view_time desc LIMIT 10
+		) a
+		ORDER BY a.views asc
+	</select>
+
+</mapper>

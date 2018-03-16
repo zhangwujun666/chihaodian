@@ -14,6 +14,12 @@
 <script type="text/javascript" src="lib/html5.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/H-ui.js"></script>
+<script type="text/javascript" src="js/H-ui.admin.js"></script>
 <![endif]-->
 
 <link rel="stylesheet" href="css/person.css">
@@ -38,7 +44,32 @@
 	<div id="main" style="height:400px;"></div>
 	<%--<script type="text/javascript" src="js/echarts.min.js"></script>--%>
 	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+	<script src="js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript">
+        // function demo(goods_id){
+        //     var goods_id = '105';
+        //     $.ajax({
+        //         url:'countData.html',
+        //         type:'post',
+        //         data:'goods_id='+ goods_id,
+        //         success:function(rs){
+        //             var temp = JSON.parse(rs);
+        //             var res = temp.countData;
+        //             var views = new Array();
+        //             var counts = new Array();
+        //             for(var i = 0; i < res.length; i++){
+			// 			views.push(res[i]['views']);
+        //                 counts.push(res[i]['count']);
+			// 		}
+        //             var dataViews=JSON.stringify(views);
+        //             document.getElementById("views").value= dataViews;
+        //             var dataCounts=JSON.stringify(counts);
+        //             document.getElementById("count").value= dataCounts;
+        //         }
+        //     })
+        //
+        // }
+
         require.config({
             paths: {
                 echarts: 'http://echarts.baidu.com/build/dist'
@@ -47,75 +78,118 @@
         require(
             [
                 'echarts',
-                'echarts/chart/line'   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/line',
+				'echarts/chart/bar'   // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
             ],
             function (ec) {
-                var myChart = ec.init(document.getElementById('main'));
-                var option = {
-                    tooltip : {
-                        trigger: 'axis'
-                    },
-                    legend: {
-                        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
-                    },
-                    toolbox: {
-                        show : true,
-                        feature : {
-                            mark : {show: true},
-                            dataView : {show: true, readOnly: false},
-                            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                            restore : {show: true},
-                            saveAsImage : {show: true}
-                        }
-                    },
-                    calculable : true,
-                    xAxis : [
-                        {
-                            type : 'category',
-                            boundaryGap : false,
-                            data : ['周一','周二','周三','周四','周五','周六','周日']
-                        }
-                    ],
-                    yAxis : [
-                        {
-                            type : 'value'
-                        }
-                    ],
-                    series : [
-                        {
-                            name:'邮件营销',
-                            type:'line',
-                            stack: '总量',
-                            data:[120, 132, 101, 134, 90, 230, 210]
-                        },
-                        {
-                            name:'联盟广告',
-                            type:'line',
-                            stack: '总量',
-                            data:[220, 182, 191, 234, 290, 330, 310]
-                        },
-                        {
-                            name:'视频广告',
-                            type:'line',
-                            stack: '总量',
-                            data:[150, 232, 201, 154, 190, 330, 410]
-                        },
-                        {
-                            name:'直接访问',
-                            type:'line',
-                            stack: '总量',
-                            data:[320, 332, 301, 334, 390, 330, 320]
-                        },
-                        {
-                            name:'搜索引擎',
-                            type:'line',
-                            stack: '总量',
-                            data:[820, 932, 901, 934, 1290, 1330, 1320]
-                        }
-                    ]
-                };
 
-                myChart.setOption(option);
+                var goods_id = '105';
+                $.ajax({
+                    url:'countData.html',
+                    type:'post',
+                    async:'true',
+                    data:'goods_id='+ goods_id,
+                    success:function(rs){
+                        var temp = JSON.parse(rs);
+                        var res = temp.countData;
+                        var views = new Array();
+                        var counts = new Array();
+                        for(var i = 0; i < res.length; i++){
+                            views.push(res[i]['views']);
+                            counts.push(res[i]['count']);
+                        }
+                        // var dataViews=JSON.stringify(views);
+                        // document.getElementById("views").value= dataViews;
+                        // var dataCounts=JSON.stringify(counts);
+                        // document.getElementById("count").value= dataCounts;
+                        myChart.hideLoading();
+                        myChart.setOption({
+                            tooltip : {
+                                trigger: 'axis'
+                            },
+                            // legend: {
+                            //     data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+                            // },
+                            toolbox: {
+                                show : true,
+                                feature : {
+                                    mark : {show: true},
+                                    dataView : {show: true, readOnly: false},
+                                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                                    restore : {show: true},
+                                    saveAsImage : {show: true}
+                                }
+                            },
+                            calculable : true,
+                            xAxis : [
+                                {
+                                    type : 'category',
+                                    boundaryGap : false,
+                                    data : views,
+									name : '浏览时间'
+                                }
+                            ],
+                            yAxis : [
+                                {
+                                    type : 'value',
+                                    name : '浏览量'
+                                }
+                            ],
+                            series : [
+                                {
+                                    name:'浏览量',
+                                    type:'line',
+                                    stack: '总量',
+                                    data: counts
+                                }
+                            ]
+                        });
+                    }
+                })
+                // var data1 = $("#views").val();
+                // var data2 = $("#count").val();
+                var myChart = ec.init(document.getElementById('main'));
+                // var option = {
+                //     tooltip : {
+                //         trigger: 'axis'
+                //     },
+                //     // legend: {
+                //     //     data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+                //     // },
+                //     toolbox: {
+                //         show : true,
+                //         feature : {
+                //             mark : {show: true},
+                //             dataView : {show: true, readOnly: false},
+                //             magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                //             restore : {show: true},
+                //             saveAsImage : {show: true}
+                //         }
+                //     },
+                //     calculable : true,
+                //     xAxis : [
+                //         {
+                //             type : 'category',
+                //             boundaryGap : false,
+                //             data : $("#views").val()
+                //         }
+                //     ],
+                //     yAxis : [
+                //         {
+                //             type : 'value'
+                //         }
+                //     ],
+                //     series : [
+                //         {
+                //             name:'浏览量',
+                //             type:'line',
+                //             stack: '总量',
+                //             data: $("#count").val()
+                //         }
+                //     ]
+                // };
+                myChart.showLoading();
+
             }
         );
 	</script>

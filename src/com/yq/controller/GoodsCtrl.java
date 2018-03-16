@@ -11,6 +11,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.yq.entity.*;
+import com.yq.service.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,21 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yq.service.AddressService;
-import com.yq.service.CategoryService;
-import com.yq.service.CouponsService;
-import com.yq.service.FreightService;
-import com.yq.service.GoodsService;
-import com.yq.service.UserService;
 import com.yq.util.StringUtil;
 import com.yq.util.PageUtil;
-import com.yq.entity.Address;
-import com.yq.entity.Cart;
-import com.yq.entity.Category;
-import com.yq.entity.Coupons;
-import com.yq.entity.Freight;
-import com.yq.entity.Goods;
-import com.yq.entity.User;
 
 @Controller
 @RequestMapping("/")
@@ -56,6 +45,9 @@ public class GoodsCtrl extends StringUtil {
 	@Autowired
 	private UserService userService;
 	private User user = new User();
+	@Autowired
+	private CountService countService;
+	private Count count = new Count();
 	
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -152,29 +144,29 @@ public class GoodsCtrl extends StringUtil {
 		ml.setViewName("main/goods/list");
 		return ml;
 	}
-	@RequestMapping(value = "/main/goodscCount.html")
-	public ModelAndView goodscCount(Integer status,@RequestParam(defaultValue = "") String goods_name,
-							 @RequestParam(defaultValue = "0") Integer ctg_id,
-							 @RequestParam(defaultValue = "1") Integer currentPage,
-							 HttpServletRequest request) throws UnsupportedEncodingException {
-		goods_name = java.net.URLDecoder.decode(goods_name,"utf-8") ;
-		goods.setStatus(status);
-		goods.setGoods_name(goods_name);
-		goods.setCtg_id(ctg_id);
-		goods.setType(1);
-		goods.setIs_recommend(0);
-		System.out.println(request.getParameter("goods_name"));
-		int total = goodsService.count(goods);
-		PageUtil.pager(currentPage, pagesize_1, total, request);
-		goods.setPageSize(pagesize_1);
-		goods.setCurrentNum(PageUtil.currentNum(currentPage, pagesize_1));
-		List<Goods> list = goodsService.list(goods);
-		ModelAndView ml = new ModelAndView();
-		ml.addObject("goods", list);
-		ml.addObject("goods_name", goods_name);
-		ml.setViewName("main/goods/count");
-		return ml;
-	}
+//	@RequestMapping(value = "/main/goodscCount.html")
+//	public ModelAndView goodscCount(Integer status,@RequestParam(defaultValue = "") String goods_name,
+//							 @RequestParam(defaultValue = "0") Integer ctg_id,
+//							 @RequestParam(defaultValue = "1") Integer currentPage,
+//							 HttpServletRequest request) throws UnsupportedEncodingException {
+//		goods_name = java.net.URLDecoder.decode(goods_name,"utf-8") ;
+//		goods.setStatus(status);
+//		goods.setGoods_name(goods_name);
+//		goods.setCtg_id(ctg_id);
+//		goods.setType(1);
+//		goods.setIs_recommend(0);
+//		System.out.println(request.getParameter("goods_name"));
+//		int total = goodsService.count(goods);
+//		PageUtil.pager(currentPage, pagesize_1, total, request);
+//		goods.setPageSize(pagesize_1);
+//		goods.setCurrentNum(PageUtil.currentNum(currentPage, pagesize_1));
+//		List<Goods> list = goodsService.list(goods);
+//		ModelAndView ml = new ModelAndView();
+//		ml.addObject("goods", list);
+//		ml.addObject("goods_name", goods_name);
+//		ml.setViewName("main/goods/count");
+//		return ml;
+//	}
 
 	@RequestMapping(value = "/main/goodsListById.html")
 	public ModelAndView listById(Integer goods_id) {
@@ -197,7 +189,19 @@ public class GoodsCtrl extends StringUtil {
 	 * @return
 	 */
 	@RequestMapping(value = "/page/goodsListById.html")
-	public ModelAndView goodsListById(Integer goods_id) {
+	public ModelAndView goodsListById(Integer goods_id, HttpSession session) {
+		String oppen_id = getOppen_id(session);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String view_time = sdf.format(new Date());
+
+		Map<String, String> map = new HashMap<>();
+
+		map.put("goods_id", String.valueOf(goods_id));
+		map.put("view_time", view_time);
+		map.put("oppen_id", oppen_id);
+
+		countService.insert(map);
+
 		goods.setGoods_id(goods_id);
 		List<Goods> list = goodsService.listById(goods);
 		ModelAndView ml = new ModelAndView();

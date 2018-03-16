@@ -13,49 +13,5 @@
         SELECT count(*) FROM tb_share WHERE share_oppen_id=#{share_oppen_id} AND user_oppen_id=#{user_oppen_id}
     </select>
     
-    <!--<update id="update" parameterType="java.util.Map">-->
-    <!--update tb_user set-->
-    <!--realname=#{realname},-->
-    <!--head_img=#{head_img}-->
-    <!--where oppen_id=#{oppen_id}-->
-    <!--</update>-->
-    <!---->
-    <!--<update id="uparea" parameterType="java.util.Map">-->
-    <!--update tb_user set area_id=#{area_id},area_name=#{area_name} where oppen_id=#{oppen_id}-->
-    <!--</update>-->
-    <!---->
-    <!--<update id="upstatus" parameterType="java.util.Map">-->
-    <!--update tb_user set status=#{status} where oppen_id=#{oppen_id}-->
-    <!--</update>-->
-    <!---->
-    <!--<update id="upmbertime" parameterType="java.util.Map">-->
-    <!--update tb_user set member_time=#{member_time} where oppen_id=#{oppen_id}-->
-    <!--</update>  -->
-    <!---->
-    <!--<update id="updatepoint" parameterType="java.util.Map">-->
-        <!--update tb_user set point=#{point} where oppen_id=#{open_id}-->
-    <!--</update>-->
-          <!---->
-    <!--<select id="list" resultType="com.yq.entity.User">-->
-    <!--select * from tb_user where 1=1-->
-    <!--<if test="realname!=null and realname!=''">-->
-     <!--and realname like concat('%',#{realname},'%') -->
-    <!--</if>-->
-    <!--order by add_time desc limit #{currentNum},#{pageSize}-->
-    <!--</select>-->
-    <!---->
-    <!--<select id="count" resultType="int">-->
-    <!--select count(1) from tb_user where 1=1-->
-    <!--<if test="realname!=null and realname!=''">-->
-     <!--and realname=#{realname}-->
-    <!--</if>-->
-    <!--</select>-->
-    <!---->
-    <!--<select id="listById" resultType="com.yq.entity.User">-->
-    <!--select * from tb_user where oppen_id=#{oppen_id}-->
-    <!--</select>-->
-   <!---->
-    <!--<select id="isMember" resultType="int">-->
-    <!--select count(1) from tb_user where oppen_id=#{oppen_id} and member_time>#{member_time}-->
-    <!--</select>-->
+
 </mapper>

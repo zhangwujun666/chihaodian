@@ -78,7 +78,7 @@ if(username==''){
 				<ul>
 					<li><a _href="ctgList.html?status=1" href="javascript:void(0)">分类查看</a></li>
 					<li><a _href="goodsList.html?status=1" href="javascript:void(0)">商品查看</a></li>
-					<li><a _href="goodscCount.html?status=1" href="javascript:void(0)">商品统计</a></li>
+					<li><a _href="goodsCount.html" href="javascript:void(0)">商品统计</a></li>
 				</ul>
 			</dd>
 		</dl>

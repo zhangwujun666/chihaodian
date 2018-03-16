@@ -70,10 +70,10 @@
 						<th width="25px"><input type="checkbox" name="" value=""></th>
 						<th width="30px">ID</th>
 						<th width="20%">名称</th>
-						<th width="30%">缩略图</th>
+						<th width="20%">缩略图</th>
 						<th width="15%">价格</th>
-						<th width="15%">发布日期</th>
-						<th width="15%">操作</th>
+						<th width="20%">发布日期</th>
+						<th width="20%">操作</th>
 					</tr>
 				</thead>
 				<tbody>

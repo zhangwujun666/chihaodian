@@ -82,7 +82,7 @@ public class StoreCtrl extends StringUtil {
 	public ModelAndView goodsListById(String open_id,HttpServletRequest request, HttpSession session) {
 		String oppen_id = getOppen_id(session);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String add_time = sdf.format(new Date());
+		String add_time = sf.format(new Date());
 		//打开页面的user
 		user.setOppen_id(oppen_id);
 		//分享页面的user的积分
