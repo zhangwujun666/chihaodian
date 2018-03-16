@@ -12,4 +12,6 @@ public interface CountDao {
 
 	public List<Map<String, String>> countByGoodsId(Integer goods_id);
 
+	public List<Map<String, String>> countDataAll();
+
 }

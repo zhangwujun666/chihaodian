@@ -21,4 +21,9 @@ public class CountService {
 	public List<Map<String, String>> countByGoodsId(Integer goods_id){
 		return countDao.countByGoodsId(goods_id);
 	}
+
+	public List<Map<String, String>> countDataAll(){
+		return countDao.countDataAll();
+	}
+
 }

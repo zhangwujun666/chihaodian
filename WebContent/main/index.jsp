@@ -78,7 +78,6 @@ if(username==''){
 				<ul>
 					<li><a _href="ctgList.html?status=1" href="javascript:void(0)">分类查看</a></li>
 					<li><a _href="goodsList.html?status=1" href="javascript:void(0)">商品查看</a></li>
-					<li><a _href="goodsCount.html" href="javascript:void(0)">商品统计</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -129,7 +128,8 @@ if(username==''){
 			<dd>
 				<ul>
 					<li><a _href="orderList.html" href="javascript:;">订单查看</a></li>
-				</ul>
+                    <li><a _href="goodsCountAll.html" href="javascript:void(0)">实时交易统计</a></li>
+                </ul>
 			</dd>
 		</dl>
 		<c:if test="${admin.admin_id==1}">

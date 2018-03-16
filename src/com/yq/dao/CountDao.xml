@@ -27,5 +27,25 @@
 		) a
 		ORDER BY a.views asc
 	</select>
+	
+	<select id="countDataAll" resultType="java.util.Map">
+		SELECT *
+		FROM(
+		SELECT
+		date_format( str_to_date(add_time,'%Y-%m-%d %H:%i:%s'),'%Y-%m-%d' ) as "order_time",
+		count( * ) as "count"
+		FROM
+		tb_order
+		WHERE
+		`status` = '1'
+		OR
+		`status` = '2'
+		GROUP BY
+		date_format(
+		str_to_date(add_time,'%Y-%m-%d %H:%i:%s'),'%Y-%m-%d')
+		ORDER BY order_time desc
+		) a
+		ORDER BY a.order_time asc
+	</select>
 
 </mapper>

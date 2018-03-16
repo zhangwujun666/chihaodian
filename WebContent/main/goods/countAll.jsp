@@ -35,13 +35,14 @@
 </head>
 <body>
 	<nav class="breadcrumb">
-		<%--<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>--%>
-		<%--查看--%>
+		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
+		统计
 		<a class="btn btn-success radius r mr-20"
 			style="line-height: 1.6em; margin-top: 3px"
 			href="javascript:location.replace(location.href);" title="刷新"><i
 			class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
+	<p style="font-size: 25px; margin-top: 20px; margin-left: 45%;">有效交易分析</p>
 	<div id="main" style="height:400px;"></div>
 	<%--<script type="text/javascript" src="js/echarts.min.js"></script>--%>
 	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
@@ -64,17 +65,17 @@
                 var goods_id = url.substring(i+1);
                 // var goods_id = '105';
                 $.ajax({
-                    url:'countData.html',
+                    url:'countDataAll.html',
                     type:'post',
                     async:'true',
-                    data:'goods_id='+ goods_id,
+                    // data:'goods_id='+ goods_id,
                     success:function(rs){
                         var temp = JSON.parse(rs);
                         var res = temp.countData;
-                        var views = new Array();
+                        var order_time = new Array();
                         var counts = new Array();
                         for(var i = 0; i < res.length; i++){
-                            views.push(res[i]['views']);
+                            order_time.push(res[i]['order_time']);
                             counts.push(res[i]['count']);
                         }
                         // var dataViews=JSON.stringify(views);
@@ -101,19 +102,19 @@
                                 {
                                     type : 'category',
                                     boundaryGap : false,
-                                    data : views,
-									name : '浏览时间'
+                                    data : order_time,
+									name : '交易时间'
                                 }
                             ],
                             yAxis : [
                                 {
                                     type : 'value',
-                                    name : '浏览量'
+                                    name : '有效交易量'
                                 }
                             ],
                             series : [
                                 {
-                                    name:'浏览量',
+                                    name:'有效交易量',
                                     type:'line',
                                     stack: '总量',
                                     data: counts

@@ -72,7 +72,8 @@
 						<th width="20%">名称</th>
 						<th width="20%">缩略图</th>
 						<th width="15%">价格</th>
-						<th width="20%">发布日期</th>
+						<th width="10%">发布日期</th>
+						<th width="10%">数据分析</th>
 						<th width="20%">操作</th>
 					</tr>
 				</thead>
@@ -85,7 +86,9 @@
 							<td><img alt="" src="${list.goods_img}" width="50" height="50"> </td>
 							<td>${list.goods_price}</td>
 							<td>${list.add_time}</td>
-							
+							<%--<td><a style="color: #FF0000" href="goodsCount.html?goods_id=${list.goods_id}">查看数据分析</a></td>--%>
+							<td><input style="height: 30px; color: #FF0000;"
+                                       type="button" id="analyse" onclick="analyse(${list.goods_id})" value="  查看数据分析  "></td>
 							<td>
 							<a href="goodsListById.html?goods_id=${list.goods_id}">编辑</a>&nbsp;&nbsp;
 							<c:if test="${list.is_recommend!=1}">
@@ -216,6 +219,16 @@
 	<script type="text/javascript" src="js/H-ui.js"></script>
 	<script type="text/javascript" src="js/H-ui.admin.js"></script>
 	<script type="text/javascript">
+		function analyse(goods_id) {
+            layer.open({
+                type: 2,
+                title: '商品浏览量分析',
+                maxmin: true,
+                shadeClose: true, //点击遮罩关闭层
+                area : ['800px' , '520px'],
+                content: '/main/goodsCount.html?goods_id=' + goods_id
+            });
+        }
 		$(function() {
 			$('.table-sort').dataTable({
 				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
