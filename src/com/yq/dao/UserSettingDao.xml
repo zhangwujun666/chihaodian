@@ -3,7 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yq.dao.UserSettingDao">
     <insert id="insert" parameterType="java.util.Map">
-	insert tb_user(share_point,order_point,money_point,one_start,one_end,two_start,two_end,three_start,three_end,four_start,four_end,fiv_start,five_end)
+	insert tb_user_setting(share_point,order_point,money_point,one_start,one_end,two_start,two_end,three_start,three_end,four_start,four_end,fiv_start,five_end)
 	values
 	(
 	#{share_point},#{order_point},#{money_point},#{one_start},#{one_end},#{two_start},#{two_end}，#{three_start}，#{three_end}，#{four_start}，#{four_end}，#{fiv_start}，#{five_end}
@@ -11,9 +11,23 @@
     </insert>
     
     <update id="update" parameterType="java.util.Map">
-    <!--update tb_user set-->
-    <!--realname=#{realname},-->
-    <!--head_img=#{head_img}-->
-    <!--where oppen_id=#{oppen_id}-->
+        UPDATE tb_user_setting SET share_point=#{share_point},
+        order_point=#{order_point},
+        money_point=#{money_point},
+        one_start=#{one_start},
+        one_end=#{one_end},
+        two_start=#{two_start},
+        two_end=#{two_end},
+        three_start=#{three_start},
+        three_end=#{three_end},
+        four_start=#{four_start},
+        four_end=#{four_end},
+        fiv_start=#{fiv_start},
+        five_end=#{five_end},
+        one_sale=#{one_sale},
+        two_sale=#{two_sale},
+        three_sale=#{three_sale},
+        four_sale=#{four_sale},
+        five_sale=#{five_sale}
     </update>
 </mapper>

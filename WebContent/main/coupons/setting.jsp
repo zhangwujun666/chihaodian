@@ -47,7 +47,7 @@
 			<div class="row cl">
 						<label class="form-label col-2">有效分享一次商城添加积分：</label>
 						<div class="formControls col-10">
-							<input type="text" id="appid"  value="${list.appid}" class="input-text" style="width:40%">
+							<input type="text" id="share_point"  value="${list.appid}" class="input-text" style="width:40%">
 						</div>
 			</div>
 			<br>		
@@ -139,16 +139,18 @@
 	<script type="text/javascript">
 	
 	function update(){
-		var appid=$('#appid').val();
+		var share_point=$('#share_point').val();
 		var appsecret=$('#appsecret').val();
 		var link=$('#link').val();
 		var partner=$('#partner').val();
 		var partnerkey=$('#partnerkey').val();
 		
 		$.ajax({
-			url:'wxSettingUpdate.html',
+			url:'uodateSetting.html',
 			type:'post',
-			data:'appid='+appid+'&appsecret='+appsecret+'&link='+encodeURIComponent(link)+'&partner='+partner+'&partnerkey='+partnerkey,
+			data:'share_point='+share_point+'order_point='+order_point+'money_point='+money_point+'one_start='+one_start+'one_end='+one_end+'two_start='+two_start+
+				 'two_end='+two_end+'three_start='+three_start+'three_end='+three_end+'four_start='+four_start+'four_end='+four_end+'fiv_start='+fiv_start+
+           		 'five_end='+five_end+'one_sale='+one_sale+'two_sale='+two_sale+'three_sale='+three_sale+'four_sale='+four_sale+'five_sale='+five_sale,
 			success:function(rs){
 				var data = eval('('+rs+')');
 				if(data.rs==1){

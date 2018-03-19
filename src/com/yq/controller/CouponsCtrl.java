@@ -10,6 +10,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.yq.dao.UserSettingDao;
+import com.yq.service.UserService;
+import com.yq.service.UserSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +31,7 @@ public class CouponsCtrl extends StringUtil {
 	@Autowired
 	private CouponsService couponsService;
 	private Coupons coupons = new Coupons();
+	private UserSettingService userSettingService;
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -43,6 +47,34 @@ public class CouponsCtrl extends StringUtil {
 		ModelAndView ml = new ModelAndView();
 		ml.setViewName("main/coupons/setting");
 		return ml;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/main/uodateSetting.html")
+	public Object uodateSetting(String order_point,String money_point,String one_start,String one_end,
+									  String two_start,String two_end,String three_start,String three_end,
+									  String four_start,String four_end,String five_start,String five_end,
+									  String one_sale,String two_sale,String three_sale,String four_sale,
+									  String five_sale) {
+		Map<String, String> map = new HashMap<>();
+		map.put("order_point", order_point);
+		map.put("money_point", money_point);
+		map.put("one_start", one_start);
+		map.put("one_end", one_end);
+		map.put("two_start", two_start);
+		map.put("two_end", two_end);
+		map.put("three_start", three_start);
+		map.put("three_end", three_end);
+		map.put("four_start", four_start);
+		map.put("four_end", four_end);
+		map.put("five_start", five_start);
+		map.put("five_end", five_end);
+		map.put("one_sale", one_sale);
+		map.put("two_sale", two_sale);
+		map.put("three_sale",three_sale);
+		map.put("four_sale", four_sale);
+		map.put("five_sale", five_sale);
+		return userSettingService.update(map);
 	}
 
 

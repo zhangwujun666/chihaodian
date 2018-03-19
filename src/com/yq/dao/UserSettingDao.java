@@ -8,8 +8,8 @@ import java.util.Map;
 
 public interface UserSettingDao {
 
-	public int insert(Map<String, Object> map);
+	public int insert(Map<String, String> map);
 
-//	public int update(Map<String, Object> map);
+	public int update(Map<String, String> map);
 
 }
