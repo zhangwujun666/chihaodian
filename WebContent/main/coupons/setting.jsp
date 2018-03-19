@@ -54,7 +54,7 @@
 			<div class="row cl">
 						<label class="form-label col-2">每购买1元商品获得积分：</label>
 						<div class="formControls col-10">
-							<input type="text" id="appsecret"  value="${list.appsecret}" class="input-text" style="width: 40%">
+							<input type="text" id="order_point"  value="${list.appsecret}" class="input-text" style="width: 40%">
 						</div>
 					</div>		
 			<br>
@@ -62,18 +62,18 @@
 			<div class="row cl">
 						<label class="form-label col-2">兑换1元代金券需要积分：</label>
 						<div class="formControls col-10">
-							<input type="text" id="link"  value="${list.link}" class="input-text" style="width: 40%">
+							<input type="text" id="money_point"  value="${list.link}" class="input-text" style="width: 40%">
 						</div>
 					</div>		
 			<br>
 			<div class="row cl">
 						<label class="form-label col-2">1级会员经验区间：</label>
 						<div class="formControls col-10">
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="one_start"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">~</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="one_end"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">——折扣参数：</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 10%">
+							<input type="text" id="one_sale"  value="${list.partner}" class="input-text" style="width: 10%">
 							<span style="font-size: 20px">折</span>
 						</div>
 					</div>		
@@ -81,11 +81,11 @@
 			<div class="row cl">
 						<label class="form-label col-2">2级会员经验区间：</label>
 						<div class="formControls col-10">
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="two_start"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">~</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="two_end"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">——折扣参数：</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 10%">
+							<input type="text" id="two_sale"  value="${list.partner}" class="input-text" style="width: 10%">
 							<span style="font-size: 20px">折</span>
 						</div>
 					</div>	
@@ -93,11 +93,11 @@
 			<div class="row cl">
 						<label class="form-label col-2">3级会员经验区间：</label>
 						<div class="formControls col-10">
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="three_start"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">~</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="three_end"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">——折扣参数：</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 10%">
+							<input type="text" id="three_sale"  value="${list.partner}" class="input-text" style="width: 10%">
 							<span style="font-size: 20px">折</span>
 						</div>
 					</div>
@@ -105,11 +105,11 @@
 			<div class="row cl">
 						<label class="form-label col-2">4级会员经验区间：</label>
 						<div class="formControls col-10">
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="four_start"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">~</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="four_end"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">——折扣参数：</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 10%">
+							<input type="text" id="four_sale"  value="${list.partner}" class="input-text" style="width: 10%">
 							<span style="font-size: 20px">折</span>
 						</div>
 					</div>
@@ -117,11 +117,11 @@
 			<div class="row cl">
 						<label class="form-label col-2">5级会员经验区间：</label>
 						<div class="formControls col-10">
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="five_start"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">~</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 19%">
+							<input type="text" id="five_end"  value="${list.partner}" class="input-text" style="width: 19%">
 							<span style="font-size: 20px">——折扣参数：</span>
-							<input type="text" id="partner"  value="${list.partner}" class="input-text" style="width: 10%">
+							<input type="text" id="five_sale"  value="${list.partner}" class="input-text" style="width: 10%">
 							<span style="font-size: 20px">折</span>
 						</div>
 					</div>
@@ -140,17 +140,30 @@
 	
 	function update(){
 		var share_point=$('#share_point').val();
-		var appsecret=$('#appsecret').val();
-		var link=$('#link').val();
-		var partner=$('#partner').val();
-		var partnerkey=$('#partnerkey').val();
-		
+		var order_point=$('#order_point').val();
+		var money_point=$('#money_point').val();
+		var one_start=$('#one_start').val();
+		var one_end=$('#one_end').val();
+        var two_start=$('#two_start').val();
+        var two_end=$('#two_end').val();
+        var three_start=$('#three_start').val();
+        var three_end=$('#three_end').val();
+        var four_start=$('#four_start').val();
+        var four_end=$('#four_end').val();
+        var fiv_start=$('#fiv_start').val();
+        var five_end=$('#five_end').val();
+        var one_sale=$('#one_sale').val();
+        var two_sale=$('#two_sale').val();
+        var three_sale=$('#three_sale').val();
+        var four_sale=$('#four_sale').val();
+        var five_sale=$('#five_sale').val();
+
 		$.ajax({
 			url:'uodateSetting.html',
 			type:'post',
-			data:'share_point='+share_point+'order_point='+order_point+'money_point='+money_point+'one_start='+one_start+'one_end='+one_end+'two_start='+two_start+
-				 'two_end='+two_end+'three_start='+three_start+'three_end='+three_end+'four_start='+four_start+'four_end='+four_end+'fiv_start='+fiv_start+
-           		 'five_end='+five_end+'one_sale='+one_sale+'two_sale='+two_sale+'three_sale='+three_sale+'four_sale='+four_sale+'five_sale='+five_sale,
+			data:'share_point='+share_point+'&order_point='+order_point+'&money_point='+money_point+'&one_start='+one_start+'&one_end='+one_end+'&two_start='+two_start+
+				 '&two_end='+two_end+'&three_start='+three_start+'&three_end='+three_end+'&four_start='+four_start+'&four_end='+four_end+'&fiv_start='+fiv_start+
+           		 '&five_end='+five_end+'&one_sale='+one_sale+'&two_sale='+two_sale+'&three_sale='+three_sale+'&four_sale='+four_sale+'&five_sale='+five_sale,
 			success:function(rs){
 				var data = eval('('+rs+')');
 				if(data.rs==1){

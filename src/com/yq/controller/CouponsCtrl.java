@@ -52,10 +52,10 @@ public class CouponsCtrl extends StringUtil {
 	@ResponseBody
 	@RequestMapping(value = "/main/uodateSetting.html")
 	public Object uodateSetting(String order_point,String money_point,String one_start,String one_end,
-									  String two_start,String two_end,String three_start,String three_end,
-									  String four_start,String four_end,String five_start,String five_end,
-									  String one_sale,String two_sale,String three_sale,String four_sale,
-									  String five_sale) {
+                              String two_start,String two_end,String three_start,String three_end,
+                              String four_start,String four_end,String five_start,String five_end,
+                              String one_sale,String two_sale,String three_sale,String four_sale,
+                              String five_sale) {
 		Map<String, String> map = new HashMap<>();
 		map.put("order_point", order_point);
 		map.put("money_point", money_point);
