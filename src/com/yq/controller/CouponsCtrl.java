@@ -30,12 +30,21 @@ public class CouponsCtrl extends StringUtil {
 	private Coupons coupons = new Coupons();
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+
 	@RequestMapping(value = "/main/cpsAddjsp.html")
 	public ModelAndView addjsp() {
 		ModelAndView ml = new ModelAndView();
 		ml.setViewName("main/coupons/add");
 		return ml;
 	}
+
+	@RequestMapping(value = "/main/setting.html")
+	public ModelAndView setting() {
+		ModelAndView ml = new ModelAndView();
+		ml.setViewName("main/coupons/setting");
+		return ml;
+	}
+
 
 	@ResponseBody
 	@RequestMapping(value = "/main/cpsInsert.html")

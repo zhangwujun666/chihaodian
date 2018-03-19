@@ -118,6 +118,7 @@ if(username==''){
 			<dd>
 				<ul>
 					<li><a _href="cpsList.html" href="javascript:;">优惠券查看</a></li>
+					<li><a _href="setting.html" href="javascript:;">优惠券参数设置</a></li>
 				</ul>
 			</dd>
 		</dl>
