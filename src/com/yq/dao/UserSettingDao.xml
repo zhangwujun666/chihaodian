@@ -11,7 +11,9 @@
     </insert>
     
     <update id="update" parameterType="java.util.Map">
-        UPDATE tb_user_setting SET share_point=#{share_point},
+        UPDATE tb_user_setting
+        SET
+        share_point=#{share_point},
         order_point=#{order_point},
         money_point=#{money_point},
         one_start=#{one_start},
@@ -22,7 +24,7 @@
         three_end=#{three_end},
         four_start=#{four_start},
         four_end=#{four_end},
-        fiv_start=#{fiv_start},
+        five_start=#{five_start},
         five_end=#{five_end},
         one_sale=#{one_sale},
         two_sale=#{two_sale},
@@ -30,4 +32,9 @@
         four_sale=#{four_sale},
         five_sale=#{five_sale}
     </update>
+
+    <select id="list" resultType="com.yq.entity.UserSetting">
+        select *
+        from tb_user_setting
+    </select>
 </mapper>

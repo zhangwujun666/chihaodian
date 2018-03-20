@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.yq.dao.UserSettingDao;
 import com.yq.service.UserService;
 import com.yq.service.UserSettingService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,7 @@ public class CouponsCtrl extends StringUtil {
 	@Autowired
 	private CouponsService couponsService;
 	private Coupons coupons = new Coupons();
+	@Autowired
 	private UserSettingService userSettingService;
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,18 +47,20 @@ public class CouponsCtrl extends StringUtil {
 	@RequestMapping(value = "/main/setting.html")
 	public ModelAndView setting() {
 		ModelAndView ml = new ModelAndView();
+		ml.addObject("list", userSettingService.list());
 		ml.setViewName("main/coupons/setting");
 		return ml;
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/main/uodateSetting.html")
-	public Object uodateSetting(String order_point,String money_point,String one_start,String one_end,
+	@RequestMapping(value = "/main/updateSetting.html")
+	public Object uodateSetting(String share_point, String order_point,String money_point,String one_start,String one_end,
                               String two_start,String two_end,String three_start,String three_end,
                               String four_start,String four_end,String five_start,String five_end,
                               String one_sale,String two_sale,String three_sale,String four_sale,
                               String five_sale) {
 		Map<String, String> map = new HashMap<>();
+		map.put("share_point", share_point);
 		map.put("order_point", order_point);
 		map.put("money_point", money_point);
 		map.put("one_start", one_start);
@@ -74,7 +78,12 @@ public class CouponsCtrl extends StringUtil {
 		map.put("three_sale",three_sale);
 		map.put("four_sale", four_sale);
 		map.put("five_sale", five_sale);
-		return userSettingService.update(map);
+        Integer rs =  userSettingService.update(map);
+        Map<String, String> rsMap = new HashMap<>();
+		rsMap.put("rs", String.valueOf(rs));
+		JSONObject jsonObject = JSONObject.fromObject(rsMap);
+		String result = jsonObject.toString();
+		return result;
 	}
 
 
