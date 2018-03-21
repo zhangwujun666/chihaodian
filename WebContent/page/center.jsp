@@ -21,24 +21,32 @@
     <header class="user-info" style="background-image: url(images/head.png); background-size: 100%; background-repeat: no-repeat; height: 130px;">
         <section class="user-basic" style="height: 120px">
         <c:forEach items="${user}" var="list">
-        <img src="${list.head_img}" style="margin-left: 20%">
-            <img src="${levelImg}" style="float: right;">
+        <img src="${list.head_img}" style="">
+            <%--<img src="${levelImg}" style="float: right;">--%>
         <div class="user-name">${list.realname}</div>
          </c:forEach>
         </section>
     </header>
-    <div style="background-color: #F3F3F3;height: 10px"></div>
+    <%--<div style="background-color: #F3F3F3;height: 10px"></div>--%>
 
-    <section class="f-section" style="line-height: 30px">
-        <%--<c:forEach items="${user}" var="list">--%>
-            <div class="slide-link" style="background: white">
-                <img src="images/wd-012-06.png">
-                我的等级 : ${name}
-                <%--<img src="${levelImg}" style="float: right;">--%>
-            </div>
-        <%--</c:forEach>--%>
+    <section style="line-height: 30px">
+        <div style="background-color: #F3F3F3; padding: 10px 20px 0px;">
+            <img src="images/card.png" style="width: 100%">
+            <span style="position: absolute; top: 290px; left: 67px; color: white;">${name}</span>
+        </div>
     </section>
-    <div style="background-color: #F3F3F3;height: 10px"></div>
+    <%--<div style="background-color: #F3F3F3;height: 10px"></div>--%>
+
+    <%--<section class="f-section" style="line-height: 30px">--%>
+        <%--&lt;%&ndash;<c:forEach items="${user}" var="list">&ndash;%&gt;--%>
+            <%--<div class="slide-link" style="background: white">--%>
+                <%--<img src="images/wd-012-06.png">--%>
+                <%--我的等级 : ${name}--%>
+                <%--&lt;%&ndash;<img src="${levelImg}" style="float: right;">&ndash;%&gt;--%>
+            <%--</div>--%>
+        <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
+    <%--</section>--%>
+    <%--<div style="background-color: #F3F3F3;height: 10px"></div>--%>
 
     <section class="f-section" style="line-height: 30px">
         <c:forEach items="${user}" var="list">

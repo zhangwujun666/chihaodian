@@ -52,13 +52,13 @@ public class userPointUtil {
         Map<String, String> map = new HashMap<>();
         if(point >= 0 && point <= 500){
             level = "BRONZE";
-            name = "青铜会员";
+            name = "铜卡会员";
         }else if(point > 500 && point <=1000){
             level = "SLIVER";
-            name = "白银会员";
+            name = "银卡会员";
         }else if(point > 1000 && point <=5000){
             level = "GOLD";
-            name = "黄金会员";
+            name = "金卡会员";
         }else if(point > 5000 && point <=10000){
             level = "PLATINUM";
             name = "铂金会员";

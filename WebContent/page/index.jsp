@@ -196,7 +196,14 @@
     </div>
 </c:forEach>
 
-
+        <div class="" style="text-align: center; color: #999; font-size: 12px;">
+            <div style="height: 20px;"></div>
+            <span>©茗优特品 版权所有</span>
+            <div style="height: 10px;"></div>
+            <div style="font-size: 14px;">
+                <span>宁波宏鹏科技 提供云计算服务</span>
+            </div>
+        </div>
 <div class="sy-ft">
 
 </div>
