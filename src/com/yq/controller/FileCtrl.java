@@ -1,10 +1,14 @@
 package com.yq.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +28,7 @@ public class FileCtrl {
 	
 	@ResponseBody
 	@RequestMapping(value="/upload.html")
-	public Object upload(@RequestParam MultipartFile file,HttpServletRequest request){
+	public Object upload(@RequestParam MultipartFile file,HttpServletRequest request) throws IOException {
 			String realpath = request.getSession().getServletContext().getRealPath(""); 
 			String path = "";
 			if(realpath.contains("\\")){
@@ -34,16 +38,18 @@ public class FileCtrl {
 			}
 			System.out.println("path="+path);
 //			String fileName = file.getOriginalFilename();  
-	        String fileName = new Date().getTime()+".png";  
-	        
-	        File targetFile = new File(path, fileName);  
-	        if(!targetFile.exists()){  
+	        String fileName = new Date().getTime()+".png";
+
+	        File targetFile = new File(path, fileName);
+
+		if(!targetFile.exists()){
 	            targetFile.mkdirs();  
 	        }  
 	  
 	        //保存  
 	        try {  
-	            file.transferTo(targetFile);  
+	            file.transferTo(targetFile);
+
 	        } catch (Exception e) {  
 	            e.printStackTrace();  
 	        } 
@@ -52,11 +58,22 @@ public class FileCtrl {
 	        if(StringUtils.isNotEmpty(link)){
 	        	link = link.replace("/chihaodian", "");
 	        }
-	        String url = link+"/upload/"+fileName;
-//	        StringBuffer url = request.getRequestURL();  
+//	        StringBuffer url = request.getRequestURL();
 //			String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").append("upload/")
 //					.append(fileName).toString();
-			System.out.println(url);
-			return url;  
+
+			//	     压缩插件
+		String minPath = path + "/" + "mini_" + fileName;
+		String originalPath = path + "/" + fileName;
+		OutputStream os =new FileOutputStream(minPath);
+		Thumbnails.of(originalPath)
+				.scale(1f)
+				.outputQuality(0.3f)
+				.toOutputStream(os);
+
+
+		String url = link+"/upload/"+"mini_"+fileName;
+		System.out.println(url);
+		return url;
 	}
 }
