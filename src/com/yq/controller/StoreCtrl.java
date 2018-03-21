@@ -3,8 +3,10 @@ package com.yq.controller;
 import com.yq.dao.ShareDao;
 import com.yq.entity.Share;
 import com.yq.entity.User;
+import com.yq.entity.UserSetting;
 import com.yq.service.ShareService;
 import com.yq.service.UserService;
+import com.yq.service.UserSettingService;
 import com.yq.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,9 @@ public class StoreCtrl extends StringUtil {
 	@Autowired
 	private ShareService shareService;
 	private Share share = new Share();
+	@Autowired
+	private UserSettingService userSettingService;
+	private UserSetting userSetting;
 
 	Map<String, Object> map = new HashMap<String, Object>();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
@@ -80,6 +85,8 @@ public class StoreCtrl extends StringUtil {
 	 */
 	@RequestMapping(value = "/page/storeShare.html")
 	public ModelAndView goodsListById(String open_id,HttpServletRequest request, HttpSession session) {
+		List<UserSetting> userSettings = userSettingService.list();
+		String sharePoint = userSettings.get(0).getShare_point();
 		String oppen_id = getOppen_id(session);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String add_time = sf.format(new Date());
@@ -97,7 +104,7 @@ public class StoreCtrl extends StringUtil {
 		Integer count = shareService.countByOppenID(map);
 		if(count < 1){
 //			updatePointShare(open_id);
-			userPointUtil.updatePointShare(open_id);
+			userPointUtil.updatePointShare(open_id, sharePoint);
 			shareService.insert(map);
 		}
         //添加记录

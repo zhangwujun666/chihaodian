@@ -52,7 +52,7 @@
         <c:forEach items="${user}" var="list">
             <div class="slide-link" style="background: white">
              <img src="images/wd-012-04.png">
-                我的经验 : ${list.point}
+                我的经验值 :  ${list.point}
             </div>
         </c:forEach>
     </section>
@@ -62,7 +62,7 @@
         <c:forEach items="${user}" var="list">
             <div class="slide-link" style="background: white">
                 <img src="images/sjsc23-6.gif">
-                我的优惠券积分 : ${list.coupons}
+                优惠券积分 :  ${list.coupons}
             </div>
         </c:forEach>
     </section>

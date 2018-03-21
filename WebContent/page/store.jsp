@@ -59,7 +59,7 @@
         <%--<li>--%>
             <%--<button id="btn-merge" onclick="date()">合成</button>--%>
         <%--</li>--%>
-        <li style="background-color: #ff3c00">
+        <li style="background-color: #b8061f">
             <div id="qrCode" style="vertical-align:middle; display: inline-flex;"></div>
         </li>
         <li>

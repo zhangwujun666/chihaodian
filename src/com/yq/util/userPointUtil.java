@@ -1,7 +1,9 @@
 package com.yq.util;
 
 import com.yq.entity.User;
+import com.yq.entity.UserSetting;
 import com.yq.service.UserService;
+import com.yq.service.UserSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,7 @@ import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -35,11 +38,17 @@ public class userPointUtil {
     public void setUserService(UserService  userService) {
         this.userService = userService;
     }
+
+    @Autowired
+    private UserSettingService userSettingService;
+    private UserSetting userSetting;
+    public void setUserSettingService(UserSettingService userSettingService) {this.userSettingService = userSettingService; }
+
     @PostConstruct
     public void init() {
         userPointUtil = this;
         userPointUtil.userService = this.userService;
-
+        userPointUtil.userSettingService = this.userSettingService;
     }
     /**
      * 用户等级区分
@@ -49,20 +58,34 @@ public class userPointUtil {
     public static Map<String, String> userLevel (int point){
         String level;
         String name;
+
+        List<UserSetting> userSettings = userPointUtil.userSettingService.list();
+
+        Integer oneStart = Integer.parseInt(userSettings.get(0).getOne_start());
+        Integer oneEnd = Integer.parseInt(userSettings.get(0).getOne_end());
+        Integer twoStart = Integer.parseInt(userSettings.get(0).getTwo_start());
+        Integer twoEnd = Integer.parseInt(userSettings.get(0).getTwo_end());
+        Integer threeStart = Integer.parseInt(userSettings.get(0).getThree_start());
+        Integer threeEnd = Integer.parseInt(userSettings.get(0).getThree_end());
+        Integer fourStart = Integer.parseInt(userSettings.get(0).getFour_start());
+        Integer fourEnd = Integer.parseInt(userSettings.get(0).getFour_end());
+        Integer fiveStart = Integer.parseInt(userSettings.get(0).getFive_start());
+        Integer fiveEnd = Integer.parseInt(userSettings.get(0).getFive_end());
+
         Map<String, String> map = new HashMap<>();
-        if(point >= 0 && point <= 500){
+        if(point >= oneStart && point <= oneEnd){
             level = "BRONZE";
             name = "铜卡会员";
-        }else if(point > 500 && point <=1000){
+        }else if(point > twoStart && point <= twoEnd){
             level = "SLIVER";
             name = "银卡会员";
-        }else if(point > 1000 && point <=5000){
+        }else if(point > threeStart && point <= threeEnd){
             level = "GOLD";
             name = "金卡会员";
-        }else if(point > 5000 && point <=10000){
+        }else if(point > fourStart && point <= fourEnd){
             level = "PLATINUM";
             name = "铂金会员";
-        }else if(point > 10000 && point <=50000){
+        }else if(point > fiveStart && point <= fiveEnd){
             level = "DIAMOND";
             name = "钻石会员";
         }else{
@@ -110,27 +133,28 @@ public class userPointUtil {
         is.close();
     }
 
-    public static Integer updatePointShare (String open_id){
+    public static Integer updatePointShare (String open_id, String sharePoint){
         Integer addPointStatus;
         Integer addCouponsStatus;
         Integer status;
+        Integer share = Integer.parseInt(sharePoint);
 
         //经验数据
         Map<String, String> mapPoint = new HashMap<>();
-        /*分享出去后的页面被打开后加50 经验（待沟通）*/
-        //TODO
+        /*分享出去后的页面被打开后加经验（后台自定义）*/
+        //FIXED
         Integer point = userPointUtil.userService.findPointByOppenId(open_id);
-        point = point + 50;
+        point = point + share;
         String addPoint = String.valueOf(point);
         mapPoint.put("open_id", open_id);
         mapPoint.put("point", addPoint);
         addPointStatus = userPointUtil.userService.updatepoint(mapPoint);
 
         //积分数据
-        /*分享出去后的页面被打开后加50 积分（待沟通）*/
-        //TODO
+        /*分享出去后的页面被打开后加积分（后台自定义）*/
+        //FIXED
         Integer coupons = userPointUtil.userService.findPointByOppenId(open_id);
-        coupons = coupons + 50;
+        coupons = coupons + share;
         String addCoupons = String.valueOf(coupons);
         Map<String, String> mapCoupons = new HashMap<>();
         mapCoupons.put("open_id", open_id);
@@ -151,22 +175,25 @@ public class userPointUtil {
         Integer addCouponsStatus;
         Integer status;
 
+        List<UserSetting> userSettings = userPointUtil.userSettingService.list();
+        Integer orderPoint = Integer.parseInt(userSettings.get(0).getOrder_point());
+
         //经验数据
         Map<String, String> mapPoint = new HashMap<>();
-        /*分购买商品加经验（待沟通）*/
-        //TODO
+        /*分购买商品加经验（后台自定义）*/
+        //FIXED
         Integer point = userPointUtil.userService.findPointByOppenId(open_id);
-        point = point + sum;
+        point = point + (sum * orderPoint);
         String addPoint = String.valueOf(point);
         mapPoint.put("open_id", open_id);
         mapPoint.put("point", addPoint);
         addPointStatus = userPointUtil.userService.updatepoint(mapPoint);
 
         //积分数据
-        /*分购买商品加积分（待沟通）*/
-        //TODO
+        /*分购买商品加积分（后台自定义）*/
+        //FIXED
         Integer coupons = userPointUtil.userService.findPointByOppenId(open_id);
-        coupons = coupons + sum;
+        coupons = coupons + (sum * orderPoint);
         String addCoupons = String.valueOf(coupons);
         Map<String, String> mapCoupons = new HashMap<>();
         mapCoupons.put("open_id", open_id);
