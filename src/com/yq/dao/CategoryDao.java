@@ -17,5 +17,7 @@ public interface CategoryDao {
 	
 	public List<Category> list(Category category); 
 	
-	public List<Category> listById(Category category); 
+	public List<Category> listById(Category category);
+
+	public List<Category> listName();
 }

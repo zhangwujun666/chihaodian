@@ -225,7 +225,7 @@
                 title: '商品浏览量分析',
                 maxmin: true,
                 shadeClose: true, //点击遮罩关闭层
-                area : ['800px' , '520px'],
+                area : ['1200px' , '550px'],
                 content: '/main/goodsCount.html?goods_id=' + goods_id
             });
         }

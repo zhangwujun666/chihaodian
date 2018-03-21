@@ -46,22 +46,17 @@
             <a href="secGoodsList.html?is_recommend=1" class="img-1" ><img  src="images/b1.png" style="width:42px;height: 42px"> </a>
             <a href="secGoodsList.html?is_recommend=1" class="img-txt">每周精选</a>
         </li>
-        <li>
-            <a href="category.html?ctg_id=23" class="img-1" > <img  src="images/b2.png" style="width:42px;height: 42px"></a>
-            <a href="category.html?ctg_id=23" class="img-txt">活力鲜果</a>
-        </li>
-        <li>
-            <a href="category.html?ctg_id=21" class="img-1" style=""><img  src="images/b3.png" style="width:42px;height: 42px"></a>
-            <a href="category.html?ctg_id=21" class="img-txt">五谷杂粮</a>
-        </li>
-        <li>
-            <a href="menuList.html" class="img-1" ><img  src="images/b4.png" style="width:42px;height: 42px"></a>
-            <a href="menuList.html" class="img-txt">蔬菜会员</a>
-        </li>
-        <li>
-            <a href="category.html?ctg_id=22" class="img-1" ><img  src="images/b5.png" style="width:42px;height: 42px"></a>
-            <a href="category.html?ctg_id=22" class="img-txt">肉禽蛋类</a>
-        </li>
+
+        <c:forEach items="${maneMap}" var="maneMap" varStatus="map">
+            <li>
+                <a href="category.html?ctg_id=${maneMap.ctg_id}" class="img-1" > <img  src="images/b${map.index+2}.png" style="width:42px;height: 42px"></a>
+                <a href="category.html?ctg_id=23" class="img-txt">${maneMap.ctg_name}</a>
+            </li>
+        </c:forEach>
+        <%--<li>--%>
+            <%--<a href="menuList.html" class="img-1" ><img  src="images/b5.png" style="width:42px;height: 42px"></a>--%>
+            <%--<a href="menuList.html" class="img-txt">蔬菜会员</a>--%>
+        <%--</li>--%>
     </ul>
 
 </div>
@@ -118,7 +113,7 @@
     <c:forEach items="${ctgList}" var="ctgList" varStatus="s" begin="1" end="1">
         <c:set value="goodsList${s.index}" var="gl"></c:set>
         <li style="width: 50%; float: left; border-right: #9f9f9f; ">
-            <ul style="margin-left: 10px">
+            <ul style="margin-left: 5px">
                 <img src="images/headText2.png" style="height: 40px; ">
                 <span style="font-size: 9px; color: #a7a7a7;">礼轻情意重</span>
                 <div style="height: 10px;"></div>

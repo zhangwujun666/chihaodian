@@ -1,9 +1,6 @@
 package com.yq.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -61,12 +58,15 @@ public class IndexCtrl extends StringUtil{
 	@RequestMapping(value="/page/index.html")
 	public ModelAndView index(HttpSession session){
 		ModelAndView ml = new ModelAndView();
+		List<Category> maneMap = categoryService.listName();
+
 //		user.setOppen_id(getOppen_id(session));
 //		List<User> userList = userService.listById(user);
 //		if(userList.size()>0){
 //			System.out.println(userList.get(0).getArea_id());
 //			if(userList.get(0).getArea_id()!=null&&userList.get(0).getArea_id()>0){
-				goods.setType(1);
+
+ 				goods.setType(1);
 				goods.setStatus(1);
 				
 				banner.setType(1);
@@ -90,6 +90,7 @@ public class IndexCtrl extends StringUtil{
 				
 				}
 				ml.addObject("map",map);
+				ml.addObject("maneMap",maneMap);
 				ml.addObject("ctgList",ctgList);
 				ml.addObject("banList",banList);
 				ml.addObject("advList",advList);

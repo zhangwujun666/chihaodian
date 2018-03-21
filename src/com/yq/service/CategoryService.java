@@ -34,4 +34,6 @@ public class CategoryService {
 	public List<Category> listById(Category category){
 		return categoryDao.listById(category);
 	}
+
+	public List<Category> listName() { return categoryDao.listName(); }
 }

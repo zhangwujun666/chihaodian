@@ -26,6 +26,8 @@
     select * from tb_category where ctg_id=#{ctg_id}
     </select>
     
-    
+    <select id="listName" resultType="com.yq.entity.Category">
+    SELECT ctg_name,ctg_id FROM tb_category LIMIT 4
+    </select>
     
 </mapper>
