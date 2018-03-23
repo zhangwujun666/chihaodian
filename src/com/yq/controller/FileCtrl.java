@@ -62,7 +62,7 @@ public class FileCtrl {
 //			String tempContextUrl = url.delete(url.length() - request.getRequestURI().length(), url.length()).append("/").append("upload/")
 //					.append(fileName).toString();
 
-			//	     压缩插件
+		//压缩插件
 		String minPath = path + "/" + "mini_" + fileName;
 		String originalPath = path + "/" + fileName;
 		OutputStream os =new FileOutputStream(minPath);
@@ -70,9 +70,8 @@ public class FileCtrl {
 				.scale(1f)
 				.outputQuality(0.2f)
 				.toOutputStream(os);
-
-
 		String url = link+"/upload/"+"mini_"+fileName;
+
 		System.out.println(url);
 		return url;
 	}

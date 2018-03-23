@@ -5,6 +5,7 @@
 <%@ page import="org.apache.commons.fileupload.disk.*" %>
 <%@ page import="org.apache.commons.fileupload.servlet.*" %>
 <%@ page import="org.json.simple.*" %>
+<%@ page import="net.coobird.thumbnailator.Thumbnails" %>
 <%
 
 	/**
@@ -105,9 +106,22 @@
 				return;
 			}
 
+
+
+			//	     压缩插件
+			String minPath = savePath + "/" + "mini_" + newFileName;
+			String originalPath = savePath + "/" + newFileName;
+			OutputStream os =new FileOutputStream(minPath);
+			Thumbnails.of(originalPath)
+					.scale(1f)
+					.outputQuality(0.2f)
+					.toOutputStream(os);
+			String url = saveUrl + "/upload/" + "mini_" + newFileName;
+
 			JSONObject obj = new JSONObject();
 			obj.put("error", 0);
-			obj.put("url", saveUrl + newFileName);
+//			obj.put("url", saveUrl + newFileName);
+			obj.put("url", url);
 			out.println(obj.toJSONString());
 		}
 	}
