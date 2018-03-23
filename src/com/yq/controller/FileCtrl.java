@@ -68,7 +68,7 @@ public class FileCtrl {
 		OutputStream os =new FileOutputStream(minPath);
 		Thumbnails.of(originalPath)
 				.scale(1f)
-				.outputQuality(0.3f)
+				.outputQuality(0.2f)
 				.toOutputStream(os);
 
 
