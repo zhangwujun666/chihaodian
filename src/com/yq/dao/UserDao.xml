@@ -68,6 +68,6 @@
     <select id="findCouponsByOppenId" resultType="int">
         select coupons
         from tb_user
-        where coupons = #{coupons}
+        where oppen_id = #{oppen_id}
     </select>
 </mapper>

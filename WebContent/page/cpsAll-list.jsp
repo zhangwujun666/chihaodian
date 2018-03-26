@@ -29,6 +29,7 @@
                 <p class="gwc-p1">&nbsp;</p>
                 <p class="gwc-p1">券金额：<span>￥${list.cps_price}</span></p>
                 <p class="gwc-p1">有效期：<span>${list.cps_time}</span></p>
+                <p class="gwc-p1">兑换所需积分：<span>${list.cps_points}</span></p>
             </div>
             <div style="clear:both;"></div>
         </li>
@@ -43,16 +44,14 @@
 			success:function(rs){
 				if(rs==1){
 					showTip("兑换成功！");
-					
-				//	window.history.pushState({}, '', "www.baidu.com");
 					setTimeout('window.location.href=document.referrer',2000);
-				}
-				else if(rs==-1){
-					showTip('您已经兑换过此次优惠券啦！');
 				}
 				else if(rs==-5){
 					showTip('兑换已过期！');
 				}
+                else if(rs==-6){
+                    showTip('用户积分不够！');
+                }
 				else{
 					showTip("失败！");
 				}

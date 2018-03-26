@@ -10,6 +10,7 @@ public class Coupons extends Page{
 	Integer cps_level; // int(11) DEFAULT NULL COMMENT '0系统总优惠券，!0用户优惠券',
 	String oppen_id; // 
 	int status ;
+	String cps_points;
 	public Integer getCps_id() {
 		return cps_id;
 	}
@@ -74,4 +75,11 @@ public class Coupons extends Page{
 		this.status = status;
 	}
 
+	public String getCps_points() {
+		return cps_points;
+	}
+
+	public void setCps_points(String cps_points) {
+		this.cps_points = cps_points;
+	}
 }

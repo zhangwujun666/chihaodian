@@ -90,7 +90,7 @@ public class userPointUtil {
             name = "钻石会员";
         }else{
             level = "KING";
-            name = "王者会员";
+            name = "至尊会员";
         }
         map.put("level", level);
         map.put("name", name);
@@ -133,6 +133,12 @@ public class userPointUtil {
         is.close();
     }
 
+    /**
+     * 分享积分经验添加工具类
+     * @param open_id
+     * @param sharePoint
+     * @return
+     */
     public static Integer updatePointShare (String open_id, String sharePoint){
         Integer addPointStatus;
         Integer addCouponsStatus;
@@ -153,7 +159,7 @@ public class userPointUtil {
         //积分数据
         /*分享出去后的页面被打开后加积分（后台自定义）*/
         //FIXED
-        Integer coupons = userPointUtil.userService.findPointByOppenId(open_id);
+        Integer coupons = userPointUtil.userService.findCouponsByOppenId(open_id);
         coupons = coupons + share;
         String addCoupons = String.valueOf(coupons);
         Map<String, String> mapCoupons = new HashMap<>();
@@ -170,6 +176,12 @@ public class userPointUtil {
         return status;
     }
 
+    /**
+     * 购买积分经验更新工具类
+     * @param open_id
+     * @param sum
+     * @return
+     */
     public static Integer updateCouponsBuy (String open_id, Integer sum){
         Integer addPointStatus;
         Integer addCouponsStatus;
@@ -192,7 +204,7 @@ public class userPointUtil {
         //积分数据
         /*分购买商品加积分（后台自定义）*/
         //FIXED
-        Integer coupons = userPointUtil.userService.findPointByOppenId(open_id);
+        Integer coupons = userPointUtil.userService.findCouponsByOppenId(open_id);
         coupons = coupons + (sum * orderPoint);
         String addCoupons = String.valueOf(coupons);
         Map<String, String> mapCoupons = new HashMap<>();
@@ -207,5 +219,30 @@ public class userPointUtil {
         }
 
         return status;
+    }
+
+    /**
+     * 兑换优惠券工具类
+     * @param open_id
+     * @param use
+     * @return
+     */
+    public static Integer useCouponsBuy (String open_id, Integer use){
+        Integer addCouponsStatus;
+        //积分数据
+        /*兑换优惠券扣除积分（后台自定义）*/
+        //FIXED
+        Integer coupons = userPointUtil.userService.findCouponsByOppenId(open_id);
+        if(coupons >= use){
+            coupons = coupons - use;
+            String addCoupons = String.valueOf(coupons);
+            Map<String, String> mapCoupons = new HashMap<>();
+            mapCoupons.put("open_id", open_id);
+            mapCoupons.put("coupons", addCoupons);
+            addCouponsStatus = userPointUtil.userService.updateCoupons(mapCoupons);
+        }else{
+            addCouponsStatus = 0;
+        }
+        return addCouponsStatus;
     }
 }

@@ -14,6 +14,7 @@ import com.yq.dao.UserSettingDao;
 import com.yq.service.UserService;
 import com.yq.service.UserSettingService;
 import net.sf.json.JSONObject;
+import org.omg.PortableInterceptor.INACTIVE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ import com.yq.service.CouponsService;
 import com.yq.util.StringUtil;
 import com.yq.util.PageUtil;
 import com.yq.entity.Coupons;
+import com.yq.util.userPointUtil;
 
 @Controller
 @RequestMapping
@@ -90,9 +92,10 @@ public class CouponsCtrl extends StringUtil {
 	@ResponseBody
 	@RequestMapping(value = "/main/cpsInsert.html")
 	public String insert(String cps_name, String cps_code, Float cps_price,
-			String cps_time, Integer cps_level, String oppen_id) throws UnsupportedEncodingException {
+			String cps_time, Integer cps_level,String cps_points, String oppen_id) throws UnsupportedEncodingException {
 		String ranStr = (int) (Math.random() * 90000) + 1000 + "";
 		cps_name = java.net.URLDecoder.decode(cps_name,"utf-8") ;
+		map.put("cps_points", cps_points);
 		map.put("cps_name", cps_name);
 		map.put("cps_code", ranStr);
 		map.put("cps_price", cps_price);
@@ -110,7 +113,6 @@ public class CouponsCtrl extends StringUtil {
 	public String pageInsert(String cps_name, Integer cps_id, Float cps_price,
 			Integer cps_level, String oppen_id,
 			HttpSession session) {
-//		setOppen_id("111", session);// 测试代码，模仿登录
 		String add_time =sf.format(new Date());
 		oppen_id = getOppen_id(session);
 	//	coupons.setCps_code(cps_code);
@@ -121,29 +123,29 @@ public class CouponsCtrl extends StringUtil {
 		coupons.setOppen_id("0");
 		
 		List<Coupons> cps = couponsService.listByCode(coupons); // 系统优惠券
-		
-		if (cps.size() > 0) {
-			coupons.setCps_level(cps_id);
-			coupons.setOppen_id(oppen_id);
-			List<Coupons> cpsUser = couponsService.listByCode(coupons); // 用户优惠券
-			System.err.println(cpsUser.size());
-			if (cpsUser.size() > 0) {
-				System.err.println("cpsUser");
-				return "-1";
-			} else {
-				System.err.println(1);
-				map.put("cps_name", cps.get(0).getCps_name());
-				map.put("cps_code", cps.get(0).getCps_code());
-				map.put("cps_price", cps.get(0).getCps_price());
-				map.put("cps_time", cps.get(0).getCps_time());
-				map.put("cps_level", cps.get(0).getCps_id());
-				map.put("oppen_id", oppen_id);
-				map.put("status", 1);
-				return couponsService.insert(map) + "";
-			}
-		} else {
-			return "-5"; // 优惠券不存在
-		}
+
+        if(cps.size() > 0 ){
+            Integer userCoupons = userPointUtil.useCouponsBuy(oppen_id, Integer.parseInt(cps.get(0).getCps_points()));
+            if(userCoupons == 1) {
+                coupons.setCps_level(cps_id);
+                coupons.setOppen_id(oppen_id);
+                List<Coupons> cpsUser = couponsService.listByCode(coupons); // 用户优惠券
+                System.err.println(cpsUser.size());
+                System.err.println(1);
+                map.put("cps_name", cps.get(0).getCps_name());
+                map.put("cps_code", cps.get(0).getCps_code());
+                map.put("cps_price", cps.get(0).getCps_price());
+                map.put("cps_time", cps.get(0).getCps_time());
+                map.put("cps_level", cps.get(0).getCps_id());
+                map.put("oppen_id", oppen_id);
+                map.put("status", 1);
+                return couponsService.insert(map) + "";
+            }else{
+                return "-6";    //用户积分不够
+            }
+        }else {
+            return "-5";    //优惠券不存在
+        }
 	}
 
 	@ResponseBody

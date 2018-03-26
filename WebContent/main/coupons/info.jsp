@@ -57,6 +57,15 @@
 								placeholder="请填写券额" value="${list.cps_price}" class="input-text" style="width: 80%">
 						</div>
 			</div><br>
+				<div class="row cl">
+
+					<label class="form-label col-2">兑换比例：</label><br>
+					<label class="form-label col-2">(兑换此优惠额度需要积分)</label>
+					<div class="formControls col-10">
+						<input type="text" id="cps_points"
+							   placeholder="请填写比例" value="${list.cps_points}" class="input-text" style="width: 80%">
+					</div>
+			</div><br>
 					<div class="row cl">
 			
 						<label class="form-label col-2">截止时间：</label>
@@ -82,10 +91,11 @@
 		var cps_name = $('#cps_name').val();
 		var cps_price = $('#cps_price').val();
 		var cps_time = $('#cps_time').val();
-		$.ajax({
+        var cps_points = $('#cps_points').val();
+        $.ajax({
 			url:'cpsUpdate.html',
 			type:'post',
-			data:'cps_name='+encodeURI(cps_name)+'&cps_price='+cps_price+'&cps_time='+cps_time+'&cps_id='+cps_id,
+			data:'cps_name='+encodeURI(cps_name)+'&cps_price='+cps_price+'&cps_time='+cps_time+'&cps_id='+cps_id+'&cps_points='+cps_points,
 			success:function(rs){
 				if(rs==1){
 					
