@@ -74,6 +74,58 @@ public class CountCtrl extends StringUtil {
         return ml;
     }
 
+	@RequestMapping(value = "/main/countDate.html")
+	public ModelAndView countDate(HttpSession session) {
+		String oppen_id = getOppen_id(session);
+
+		Count count = new Count();
+//        List<Map<String, String>> list = countService.countByGoodsId(goods_id);
+
+		ModelAndView ml = new ModelAndView();
+//        ml.addObject("list", list);
+		ml.setViewName("main/goods/countDate");
+		return ml;
+	}
+
+
+	/**
+	 * 饼图计数
+	 * @param start_time
+	 * @param end_time
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/main/findcCountData.html")
+	public Object findcCountData(String start_time, String end_time) {
+		Map<String, String> search = new HashMap<>();
+		search.put("start_time", start_time);
+		search.put("end_time", end_time);
+		List<Map<String, String>> list = countService.findCountByDate(search);
+		Map<String, String> data = new HashMap<>();
+		List<Map> res  = new ArrayList<>();
+		for(int i = 0; i < list.size(); i++){
+			data = list.get(i);
+			String goods_name = data.get("goods_name");
+			Map dataMap = new HashMap<>();
+			dataMap.put("name", goods_name);
+			String counts = String.valueOf(data.get("counts"));
+			dataMap.put("value", Integer.parseInt(counts));
+			res.add(dataMap);
+		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("countData", res);
+		String json = new Gson().toJson(map);
+		JSONObject jsonObject = JSONObject.fromObject(json);
+		String result = jsonObject.toString();
+		return result;
+	}
+
+
+	/**
+	 * 单品计数
+	 * @param goods_id
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/main/countData.html")
 	public Object countData(Integer goods_id) {
@@ -105,6 +157,10 @@ public class CountCtrl extends StringUtil {
 		return result;
 	}
 
+	/**
+	 * 订单分析计数
+	 * @return
+	 */
     @ResponseBody
     @RequestMapping(value = "/main/countDataAll.html")
     public Object countDataAll() {

@@ -26,4 +26,8 @@ public class CountService {
 		return countDao.countDataAll();
 	}
 
+	public List<Map<String, String>> findCountByDate(Map<String, String> map) {
+	    return countDao.findCountByDate(map);
+	}
+
 }

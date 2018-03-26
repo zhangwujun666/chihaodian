@@ -14,4 +14,6 @@ public interface CountDao {
 
 	public List<Map<String, String>> countDataAll();
 
+	public List<Map<String, String>> findCountByDate(Map<String, String> map);
+
 }

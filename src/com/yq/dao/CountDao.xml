@@ -48,4 +48,28 @@
 		ORDER BY a.order_time asc
 	</select>
 
+	<select id="findCountByDate" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT
+		goods_name,
+		COUNT( goods_name ) AS counts
+		FROM
+		(
+		SELECT
+		goods_name,
+		str_to_date( add_time, '%Y-%m-%d' ) AS time
+		FROM
+		tb_order
+		WHERE
+		`status` = '1'
+		OR
+		`status` = '2'
+		) a
+		WHERE
+		a.time
+		BETWEEN #{start_time}
+		AND #{end_time}
+		GROUP BY
+		a.goods_name
+	</select>
+
 </mapper>

@@ -42,7 +42,7 @@
 			href="javascript:location.replace(location.href);" title="刷新"><i
 			class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
-	<p style="font-size: 25px; margin-top: 20px; margin-left: 45%;">有效交易分析</p>
+	<p style="font-size: 25px; margin-top: 20px; margin-left: 45%;">有效交易统计</p>
 	<div id="main" style="height:400px;"></div>
 	<%--<script type="text/javascript" src="js/echarts.min.js"></script>--%>
 	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>

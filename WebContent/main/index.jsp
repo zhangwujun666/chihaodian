@@ -130,6 +130,7 @@ if(username==''){
 				<ul>
 					<li><a _href="orderList.html" href="javascript:;">订单查看</a></li>
                     <li><a _href="goodsCountAll.html" href="javascript:void(0)">实时交易统计</a></li>
+					<li><a _href="countDate.html" href="javascript:void(0)">成交量分析</a></li>
                 </ul>
 			</dd>
 		</dl>

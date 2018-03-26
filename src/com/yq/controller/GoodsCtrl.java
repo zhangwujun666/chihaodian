@@ -144,29 +144,6 @@ public class GoodsCtrl extends StringUtil {
 		ml.setViewName("main/goods/list");
 		return ml;
 	}
-//	@RequestMapping(value = "/main/goodscCount.html")
-//	public ModelAndView goodscCount(Integer status,@RequestParam(defaultValue = "") String goods_name,
-//							 @RequestParam(defaultValue = "0") Integer ctg_id,
-//							 @RequestParam(defaultValue = "1") Integer currentPage,
-//							 HttpServletRequest request) throws UnsupportedEncodingException {
-//		goods_name = java.net.URLDecoder.decode(goods_name,"utf-8") ;
-//		goods.setStatus(status);
-//		goods.setGoods_name(goods_name);
-//		goods.setCtg_id(ctg_id);
-//		goods.setType(1);
-//		goods.setIs_recommend(0);
-//		System.out.println(request.getParameter("goods_name"));
-//		int total = goodsService.count(goods);
-//		PageUtil.pager(currentPage, pagesize_1, total, request);
-//		goods.setPageSize(pagesize_1);
-//		goods.setCurrentNum(PageUtil.currentNum(currentPage, pagesize_1));
-//		List<Goods> list = goodsService.list(goods);
-//		ModelAndView ml = new ModelAndView();
-//		ml.addObject("goods", list);
-//		ml.addObject("goods_name", goods_name);
-//		ml.setViewName("main/goods/count");
-//		return ml;
-//	}
 
 	@RequestMapping(value = "/main/goodsListById.html")
 	public ModelAndView listById(Integer goods_id) {
