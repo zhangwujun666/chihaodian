@@ -76,13 +76,13 @@
 
 		</div>
 		<p style="font-size: 25px; margin-top: 20px;">有效交易时间段分析</p>
-		<div id="main" style="height:600px; float: left; width: 85%;"></div>
+		<div id="main" style="height:800px; float: left; width: 85%;"></div>
 	</div>
 	<%--<script type="text/javascript" src="js/echarts.min.js"></script>--%>
 	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 	<script src="js/customed.js"></script>
 	<script src="js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>·
+	<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript">
 		function search() {
             var start_time = $('#start_time').val();
@@ -137,9 +137,9 @@
                                         {
                                             name: '单品名称',
                                             type: 'pie',
-                                            radius : '55%',
+                                            radius : '40%',
                                             hoverAnimation: 'true',
-                                            center: ['60%', '60%'],
+                                            center: ['60%', '65%'],
                                             data: res,
                                             itemStyle: {
                                                 emphasis: {
