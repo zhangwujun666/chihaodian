@@ -129,7 +129,7 @@
 
   <target name="compile.module.chihaodian.production" description="Compile module chihaodian; production classes">
     <mkdir dir="${chihaodian.output.dir}"/>
-    <javac destdir="${chihaodian.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+    <javac destdir="${chihaodian.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" includeantruntime="on">
       <compilerarg line="${compiler.args.chihaodian}"/>
       <bootclasspath refid="chihaodian.module.bootclasspath"/>
       <classpath refid="chihaodian.module.production.classpath"/>
