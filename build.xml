@@ -227,6 +227,8 @@
       <fileset file="${basedir}/WebContent/WEB-INF/lib/commons-collections-3.2.1.jar" prefix="WEB-INF/lib"/>
       <fileset file="${basedir}/WebContent/WEB-INF/lib/spring-expression-4.0.0.M1.jar" prefix="WEB-INF/lib"/>
       <fileset file="${basedir}/WebContent/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar" prefix="WEB-INF/lib"/>
+      <fileset file="${basedir}/WebContent/WEB-INF/lib/servlet-api.jar" prefix="WEB-INF/lib"/>
+      <fileset file="${basedir}/WebContent/WEB-INF/lib/jsp-api.jar" prefix="WEB-INF/lib"/>
       <fileset dir="${basedir}/WebContent"/>
       <fileset file="${basedir}/WebContent/WEB-INF/web.xml" prefix="WEB-INF"/>
     </war>
