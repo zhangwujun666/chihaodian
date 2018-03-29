@@ -16,12 +16,19 @@
 	<context:component-scan base-package="com.*.service" />
 
 	<!-- 配置数据源 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		  destroy-method="close"
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
 		  p:driverClassName="com.mysql.jdbc.Driver"
-		  p:url="jdbc:mysql://localhost:3306/mytpin"
-		  p:username="root"
-		  p:password="root">
+
+		  p:url="jdbc:mysql://db4free.net:3306/mytpin_test"
+		  p:username="mytpin"
+		  p:password="John123.">
+
+
+		  <!--p:url="jdbc:mysql://localhost:3306/mytpin"-->
+		  <!--p:username="root"-->
+		  <!--p:password="root">-->
+
+
 
 		<!--p:url="jdbc:mysql://bdm287135462.my3w.com:3306/bdm287135462_db"-->
 		<!--p:username="bdm287135462"-->
