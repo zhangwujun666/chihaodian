@@ -81,14 +81,14 @@ if(username==''){
 				</ul>
 			</dd>
 		</dl>
-		<dl id="menu-product">
-			<dt><i class="Hui-iconfont">&#xe620;</i> 菜单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-			<dd>
-				<ul>
-					<li><a _href="menuList.html?status=1" href="javascript:void(0)"> 菜单查看</a></li>
-				</ul>
-			</dd>
-		</dl>
+		<%--<dl id="menu-product">--%>
+			<%--<dt><i class="Hui-iconfont">&#xe620;</i> 菜单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
+			<%--<dd>--%>
+				<%--<ul>--%>
+					<%--<li><a _href="menuList.html?status=1" href="javascript:void(0)"> 菜单查看</a></li>--%>
+				<%--</ul>--%>
+			<%--</dd>--%>
+		<%--</dl>--%>
 		<dl id="menu-product">
 			<dt><i class="Hui-iconfont">&#xe620;</i> 轮图管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>

@@ -90,7 +90,12 @@
 							<td><input style="height: 30px; color: #FF0000;"
                                        type="button" id="analyse" onclick="analyse(${list.goods_id})" value="  查看数据分析  "></td>
 							<td>
+
+							<a href="">设置为会员折扣商品</a>&nbsp;&nbsp;
+
 							<a href="goodsListById.html?goods_id=${list.goods_id}">编辑</a>&nbsp;&nbsp;
+
+
 							<c:if test="${list.is_recommend!=1}">
 							<a href="javascript:;" onclick="is_recommend('${list.goods_id}','1')">首页推荐</a></c:if>
 							<c:if test="${list.is_recommend==1}">
