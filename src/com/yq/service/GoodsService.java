@@ -40,4 +40,6 @@ public class GoodsService {
 	public List<Goods> listById(Goods goods){
 		return goodsDao.listById(goods);
 	}
+
+	public int uptype(Map<String, Object> map) { return goodsDao.uptype(map); }
 }

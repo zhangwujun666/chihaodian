@@ -121,6 +121,14 @@ public class GoodsCtrl extends StringUtil {
 		return goodsService.upisrec(map) + "";
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/main/goodsUpType.html")
+	public Object upTyple(Integer goods_id, Integer type) {
+		map.put("type", type);
+		map.put("goods_id", goods_id);
+		return goodsService.uptype(map) + "";
+	}
+
 	@RequestMapping(value = "/main/goodsList.html")
 	public ModelAndView list(Integer status,@RequestParam(defaultValue = "") String goods_name,
 			@RequestParam(defaultValue = "0") Integer ctg_id,
@@ -130,7 +138,7 @@ public class GoodsCtrl extends StringUtil {
 		goods.setStatus(status);
 		goods.setGoods_name(goods_name);
 		goods.setCtg_id(ctg_id);
-		goods.setType(1);
+//		goods.setType(1);
 		goods.setIs_recommend(0);
 		System.out.println(request.getParameter("goods_name"));
 		int total = goodsService.count(goods);

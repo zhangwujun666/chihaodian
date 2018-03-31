@@ -91,7 +91,11 @@
                                        type="button" id="analyse" onclick="analyse(${list.goods_id})" value="  查看数据分析  "></td>
 							<td>
 
-							<a href="">设置为会员折扣商品</a>&nbsp;&nbsp;
+							<c:if test="${list.type==1}">
+							<a href="javascript:;" onclick="updateType('${list.goods_id}','2')">设置为会员折扣商品</a>&nbsp;&nbsp;</c:if>
+							<c:if test="${list.type==2}">
+							<a href="javascript:;" onclick="updateType('${list.goods_id}','1')" style="color: red">取消为会员折扣商品</a>&nbsp;&nbsp;</c:if>
+
 
 							<a href="goodsListById.html?goods_id=${list.goods_id}">编辑</a>&nbsp;&nbsp;
 
@@ -161,9 +165,9 @@
 	function is_recommend(goods_id,is_recommend){
 		var  b;
 		if(is_recommend==1){
-		  b = confirm('设为本周推荐？');	
+		  	b = confirm('设为本周推荐？');
 		}else{
-		 b = confirm('取消本周推荐？');	
+		 	b = confirm('取消本周推荐？');
 		}
 		
 		if(!b){
@@ -183,6 +187,33 @@
 			}
 		})
 	}
+
+    function updateType(goods_id, type){
+        var  b;
+        if(type==1){
+            b = confirm('取消会员折扣商品？');
+        }else{
+            b = confirm('设为会员折扣商品？');
+        }
+
+        if(!b){
+            return ;
+        }
+        $.ajax({
+            url:'goodsUpType.html',
+            type:'post',
+            data:'goods_id='+goods_id+'&type='+type,
+            success:function(rs){
+                if(rs==1){
+                    alert("成功！");
+                    location.reload();
+                }else{
+                    alert("失败！");
+                }
+            }
+        })
+    }
+
 	var goods_name = '${goods_name}';
 	var currentPage = '${currentPage}';
 	var totalPage = '${totalPage}';

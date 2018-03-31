@@ -24,9 +24,15 @@
     update tb_goods set is_recommend=#{is_recommend} where goods_id=#{goods_id}
     </update>
     
+    <update id="uptype" parameterType="java.util.Map">
+    UPDATE tb_goods SET type=#{type} WHERE goods_id=#{goods_id}
+    </update>
+    
     <select id="list" resultType="com.yq.entity.Goods">
-    select * from tb_goods where status=#{status} 
-    and type=#{type} 
+    select * from tb_goods where status=#{status}
+    <if test="type!=null and type!=''">
+    and type=#{type}
+    </if>
     <if test="goods_name!=null and goods_name!=''">
     and goods_name like CONCAT('%',#{goods_name},'%')
     </if>

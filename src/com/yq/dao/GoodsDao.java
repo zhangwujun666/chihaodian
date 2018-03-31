@@ -22,4 +22,6 @@ public interface GoodsDao {
 	public List<Goods> listById(Goods goods);
 
 	public String findCardIdByGoodId(String goodsId);
+
+	public int uptype(Map<String, Object> map);
 }
