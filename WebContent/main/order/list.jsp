@@ -137,9 +137,25 @@
 							<%-- <td class="text-c">${list.realname}${list.cps_id}</td> --%>
 							<td>${list.addr_name}</td>
 							<td>${list.receive}</td>
-							<td>${list.note}</td>
-							<td class="text-c"><c:if test="${list.status==0 }">待支付</c:if>
-							<c:if test="${list.status==1 }"><font color="#1e90ff"> 待发货</font></c:if>
+
+							<td>
+							<c:if test="${list.note == '已使用微信卡券' or list.note == '微信转增券'}">
+								<c:if test="${list.note == '已使用微信卡券'}">
+									<span style="color: red">已使用微信卡券</span>
+								</c:if>
+								<c:if test="${list.note == '微信转增券'}">
+									<span style="color: green">微信转增券</span>
+								</c:if>
+							</c:if>
+							<c:if test="${list.note != '已使用微信卡券' and list.note != '微信转增券'}">
+								${list.note}
+							</c:if>
+							</td>
+
+							<%--<td>${list.note}</td>--%>
+
+							<td class="text-c"><c:if test="${list.status==0 }"><font color="#6495ed">待支付</c:if>
+							<c:if test="${list.status==1 }"><font color="green"> 待发货</font></c:if>
 							<c:if test="${list.status==2 }">已发货</c:if>
 							<c:if test="${list.status==-5}"><font color="red">待退款</font></c:if>
 							<c:if test="${list.status==-6}">已关闭</c:if>
