@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/shoujisc.css">
     <link rel="stylesheet" href="css/search.css">
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <%--<script type="text/javascript" src="js/jquery.js"></script>--%>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
     <script type="text/javascript" src="js/woxiangyao.js"></script>
     <script type="text/javascript" src="js/TouchSlide.1.1.js"></script>
     <script type="text/javascript" src="js/foot.js"></script>
@@ -23,7 +24,7 @@
 
 
 
-<div class="sy-info1" style="border-bottom:4px solid #E6E6E6; background-image: url(images/head.png); background-size: 100%; background-repeat: no-repeat; height: 230px;">
+<div class="sy-info1" style="border-bottom:4px solid #E6E6E6; background-image: url(images/head.jpg); background-size: 100%; background-repeat: no-repeat; height: 230px;">
     <div style="width: 100%; text-align: center;">
         <img src="images/head_logo.png" style="width: 160px; margin: 0 auto; ">
     </div>
