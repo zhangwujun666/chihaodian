@@ -61,9 +61,9 @@
     </ul>
 
 </div>
-<div class="banner1" style="background-color: #a31f22; height: 60px;">
+<%--<div class="banner1" style="background-color: #a31f22; height: 60px;">--%>
    <%--<img src="images/coupon_list.jpeg">--%>
-</div>
+<%--</div>--%>
 <div class="banner1" id="ban1">
     <ul class="sy-ul">
         <c:forEach items="${banList}" var="list">
