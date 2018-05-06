@@ -57,7 +57,7 @@ public class SearchCtrl {
 	}
 	
 	@ResponseBody
-	/*@RequestMapping(value = "main/secUpstatus.html")*/
+	@RequestMapping(value = "main/secUpstatus.html")
 	public Object upstatus(Integer sec_id,Integer status) {
 		map.put("status", status);
 		map.put("sec_id", sec_id);

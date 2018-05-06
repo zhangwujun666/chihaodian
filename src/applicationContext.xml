@@ -18,7 +18,7 @@
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
 		  p:driverClassName="com.mysql.jdbc.Driver"
-		  p:url="jdbc:mysql://www.geeklimits.com:3306/roger?characterEncoding=utf8"
+		  p:url="jdbc:mysql://www.geeklimits.com:3306/roger_temp?characterEncoding=utf8"
 		  p:username="root"
 		  p:password="12345">
 
