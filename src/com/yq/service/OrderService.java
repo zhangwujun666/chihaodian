@@ -60,4 +60,6 @@ private OrderDao orderDao;
 		return orderDao.cardAddressUpdate(map);
 	}
 
+	public int conutOrderMain(){ return orderDao.conutOrderMain(); }
+
 }

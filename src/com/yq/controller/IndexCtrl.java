@@ -4,24 +4,14 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import com.yq.entity.*;
+import com.yq.service.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yq.entity.Area;
-import com.yq.entity.Banner;
-import com.yq.entity.Cart;
-import com.yq.entity.Category;
-import com.yq.entity.Goods;
-import com.yq.entity.User;
-import com.yq.service.AreaService;
-import com.yq.service.BannerService;
-import com.yq.service.CartService;
-import com.yq.service.CategoryService;
-import com.yq.service.GoodsService;
-import com.yq.service.UserService;
 import com.yq.util.StringUtil;
 
 @Controller
@@ -48,11 +38,20 @@ public class IndexCtrl extends StringUtil{
 	@Autowired
 	private CategoryService categoryService;
 	private Category category= new Category();
+
+	@Autowired
+	private OrderService orderService;
+	private Order order = new Order();
+
 	Map<String, Object> map = new HashMap<String, Object>();
 	
 	@RequestMapping(value="/main/main.html")
 	public ModelAndView mainindex(){
-		return new ModelAndView("main/index");
+		ModelAndView ml = new ModelAndView();
+		Integer countNeedToDo = orderService.conutOrderMain();
+		ml.addObject("countNeedToDo", countNeedToDo);
+		ml.setViewName("main/index");
+		return ml;
 	}
 	
 	@RequestMapping(value="/page/index.html")

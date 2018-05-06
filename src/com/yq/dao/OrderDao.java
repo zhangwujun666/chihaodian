@@ -31,4 +31,6 @@ public interface OrderDao {
 	public Map<String, String> findOrderByCode(String card_code);
 
 	public  int cardAddressUpdate(Map<String, String> map);
+
+	public int conutOrderMain();
 }

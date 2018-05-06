@@ -23,6 +23,7 @@
 <link rel="SHORTCUT ICON" href="images/favicon.ico"/>
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script type="text/javascript" src="lib/layer/1.9.3/layer.js"></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <script type="text/javascript">
@@ -32,6 +33,26 @@ if(username==''){
 }
 </script>
 <title>茗优特品-后台管理</title>
+	<style>
+		#tips{
+			background-color: red;
+			width: 21px;
+			height: 20px;
+			/* display: block; */
+			position: absolute;
+			/* border-left: 50px solid #000000; */
+			top: 25px;
+			margin-left: -9px;
+			border-radius: 50%;
+			color: white;
+		}
+		#tips-number{
+			position: absolute;
+			top: -12px;
+			left: 1px;
+			color: white;
+		}
+	</style>
 </head>
 <body>
 
@@ -41,7 +62,14 @@ if(username==''){
 
 	<span class="Hui-subtitle l">-------------Copyright© 2018.茗优特品——浙ICP备18001094号-1</span>
 	<ul class="Hui-userbar">
-		
+		<li>
+			<div title="您有未处理的订单" id="tips" >
+				<%--<span title="您有未处理的订单" id="tips-number">${countNeedToDo}</span>--%>
+				<a title="您有未处理的订单" id="tips-number" onclick="tips(${countNeedToDo})">${countNeedToDo}</a>
+			</div>
+			<img style="height: 40px;" src="images/user.png">
+		</li>
+
 		<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">${admin.username } <i class="Hui-iconfont"></i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							
@@ -237,6 +265,14 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s)})();
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
+
+//小tips
+function tips(number) {
+    layer.tips('您有' + number + '条未处理的订单,请及时处理', '#tips', {
+        tips: [1, '#ff5202'],
+        time: 4000
+    });
+}
 </script>
 </body>
 </html>

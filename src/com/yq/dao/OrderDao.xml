@@ -165,4 +165,10 @@
 		set addr_name = #{order_addr}, note = '已使用微信卡券'
 		where order_id = #{orderId}
 	</update>
+	
+	<select id="conutOrderMain" resultType="int">
+		SELECT COUNT(*)
+		FROM tb_order
+		WHERE status = 1
+	</select>
 </mapper>
