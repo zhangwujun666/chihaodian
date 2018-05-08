@@ -139,7 +139,7 @@ $(function(){
 			<select id="isCard" onchange="card()" style="border: 0">
 				<option value="0">请选择</option>
 				<option value="1">自用</option>
-				<option value="2">转增</option>
+				<option value="2">转赠</option>
 			</select>
 			<span>></span></a>
 		<div style="clear:both;"></div>
