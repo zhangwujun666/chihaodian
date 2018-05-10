@@ -118,6 +118,10 @@ public class IndexCtrl extends StringUtil{
 //		}
 		return ml;
 	}
-
-	
+	@RequestMapping(value="index.html")
+	public ModelAndView redirctIndex(HttpSession session) {
+        ModelAndView ml = new ModelAndView();
+        ml.setViewName("redirect:/page/index.html");
+        return ml;
+    }
 }

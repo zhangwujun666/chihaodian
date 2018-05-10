@@ -104,7 +104,7 @@
                         var goods_id = url.substring(i+1);
                         // var goods_id = '105';
                         $.ajax({
-                            url:'findcCountData.html',
+                            url:'findCountData.html',
                             type:'post',
                             async:'true',
                             data:'start_time=' + start_time + "&end_time=" + end_time,

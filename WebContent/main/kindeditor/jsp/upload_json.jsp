@@ -114,9 +114,11 @@
 			OutputStream os =new FileOutputStream(minPath);
 			Thumbnails.of(originalPath)
 					.scale(1f)
-					.outputQuality(0.2f)
+					.outputQuality(0.8f)
 					.toOutputStream(os);
-			String url = saveUrl + "/upload/" + "mini_" + newFileName;
+//			String url = saveUrl + "/upload/" + "mini_" + newFileName;
+			String url = saveUrl + "mini_" + newFileName;
+
 
 			JSONObject obj = new JSONObject();
 			obj.put("error", 0);

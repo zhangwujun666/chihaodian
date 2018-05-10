@@ -95,7 +95,7 @@ public class CountCtrl extends StringUtil {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/main/findcCountData.html")
+	@RequestMapping(value = "/main/findCountData.html")
 	public Object findcCountData(String start_time, String end_time) {
 		Map<String, String> search = new HashMap<>();
 		search.put("start_time", start_time);
